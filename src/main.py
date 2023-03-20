@@ -22,7 +22,7 @@ async def dataverse_metadata_enhancer(enhancer_input: EnhancerInput) -> dict:
         ['datasetVersion', 'metadataBlocks'],
         'Metadata does not contain datasetVersion or metadataBlocks key')
 
-    elsst_topics = retrieve_elsst_topics(metadata_blocks)
+    elsst_topics = create_elsst_topics(metadata_blocks)
     keywords = retrieve_keywords(metadata_blocks)
 
     for keyword in keywords:
@@ -32,11 +32,12 @@ async def dataverse_metadata_enhancer(enhancer_input: EnhancerInput) -> dict:
 
         headers = {
             'accept': 'application/json',
+            'Content-type': 'application/json',
         }
-
+        print(headers)
         params = {
             'label': term,
-            'endpoint': 'https://fuseki.dev.odissei.nl/skosmos/sparql',
+            'endpoint': 'https://fuseki.odissei.nl/skosmos/sparql',
         }
 
         url = 'https://grlc.odissei.nl/api-git/odissei-data/grlc/' \
@@ -47,20 +48,23 @@ async def dataverse_metadata_enhancer(enhancer_input: EnhancerInput) -> dict:
             params=params,
             headers=headers,
         )
+        print(response.status_code)
         if not response.ok:
             raise HTTPException(status_code=response.status_code,
                                 detail=response.text)
-
+        print(response.text)
         terms_dict = response.json()
 
         terms = _try_for_key(terms_dict, ['results', 'bindings'],
-                             'grlc endpoint return badly formatted JSON.')
+                             'grlc endpoint returned badly formatted JSON.')
 
-        elsst_topic_dict = retrieve_elsst_topic_keyword(elsst_topics, keyword)
-        print(f'dict: {elsst_topic_dict}')
+        topic = create_elsst_topic_keyword(elsst_topics, term)
+        print(f'dict: {topic}')
+        counter = 0
         for term in terms:
-            add_keyword_elsst_label(elsst_topic_dict, term)
-            add_keyword_elsst_uri(elsst_topic_dict, term)
+            counter += 1
+            add_keyword_elsst_label(topic, term, counter)
+            add_keyword_elsst_uri(topic, term, counter)
 
     return dataverse_metadata
 
@@ -101,68 +105,61 @@ def retrieve_keywords(metadata_blocks: dict) -> list:
     return keyword_block['value']
 
 
-def retrieve_elsst_topics(metadata_blocks: dict):
-    keys = ['elsstTopic', 'fields']
-    fields = _try_for_key(
-        metadata_blocks,
-        keys,
-        'elsstTopic metadata block not found. '
-        'JSON might be formatted incorrectly.'
+def create_elsst_topics(metadata_blocks: dict):
+    metadata_blocks["elsstTopic"] = {
+        "displayName": "ELSST Topics",
+        "name": "elsstTopics",
+        "fields": [
+        ]
+    }
+
+    return metadata_blocks["elsstTopic"]["fields"]
+
+
+def create_elsst_topic_keyword(elsst_topics: list, term: str):
+    print(f'elsst topic: {elsst_topics}')
+
+    topic = {
+        "keyword": {
+            "typeName": 'keyword',
+            "multiple": False,
+            "typeClass": "primitive",
+            "value": term
+        }
+    }
+
+    elsst_topics.append(
+        {
+            "typeName": "topic",
+            "multiple": True,
+            "typeClass": "compound",
+            "value": [
+                topic
+            ]
+        }
     )
 
-    elsst_block = next((field for field in fields if
-                        field.get('typeName') == 'elsstTopic'), None)
-
-    return elsst_block['value']
+    return topic
 
 
-def retrieve_elsst_topic_keyword(elsst_topics, keyword):
-    keyword_value = _try_for_key(
-        keyword,
-        ['keywordValue', 'value'],
-        'No keywordValue found in keyword block'
-    )
+def add_keyword_elsst_uri(topic: dict, term: dict, counter: int):
+    uri = _try_for_key(term, ['iri', 'value'], 'No uri found for ELSST term')
+    varUri = 'elsstVarUri' + str(counter)
 
-    for topic in elsst_topics:
-        topic_keyword = _try_for_key(
-            topic,
-            ['keyword', 'value'],
-            'No keyword or value key in keywordValue dict'
-        )
-
-        if topic_keyword == keyword_value:
-            return topic
-    raise HTTPException(status_code=400,
-                        detail='Could not find ')
-
-
-def add_keyword_elsst_uri(elsst_topic_dict: dict, term: dict):
-    try:
-        uri = term['iri']['value']
-    except KeyError:
-        raise HTTPException(status_code=400,
-                            detail='No uri found for ELSST term')
-    varUri = 'elsstVarUri'
-
-    elsst_topic_dict[varUri] = {
+    topic[varUri] = {
         "typeName": varUri,
         "multiple": False,
         "typeClass": "primitive",
         "value": uri
     }
-    print(f'keyword uri added: {elsst_topic_dict}')
+    print(f'keyword uri added: {topic}')
 
 
-def add_keyword_elsst_label(elsst_topic_dict: dict, term: dict):
-    print(term)
-    print(term['lbl']['value'])
-    try:
-        label = term['lbl']['value']
-    except KeyError:
-        raise HTTPException(status_code=404,
-                            detail='No label found for ELSST term')
-    varLabel = 'elsstVarLabel'
-    print('ik kom hier')
+def add_keyword_elsst_label(elsst_topic_dict: dict, term: dict, counter: int):
+    label = _try_for_key(term, ['lbl', 'value'],
+                         'No label found for ELSST term')
+
+    varLabel = 'elsstVarLabel' + str(counter)
 
     elsst_topic_dict[varLabel] = {
         "typeName": varLabel,
@@ -172,36 +169,3 @@ def add_keyword_elsst_label(elsst_topic_dict: dict, term: dict):
     }
 
     print(f'keyword label added: {elsst_topic_dict}')
-
-#
-# def add_elsst_uri_to_metadata(variable: dict, term: dict):
-#     try:
-#         uri = term['iri']['value']
-#     except KeyError:
-#         raise HTTPException(status_code=404,
-#                             detail='No uri found for ELSST term')
-#
-#     varLabel = 'elsstVarURI1'
-#     variable[varLabel] = {
-#         "typeName": varLabel,
-#         "multiple": False,
-#         "typeClass": "primitive",
-#         "value": uri
-#     }
-#
-#
-# def add_elsst_label_to_metadata(variable: dict, term: dict):
-#     varLabel = 'elsstVarLabel1'
-#
-#     try:
-#         label = term['lbl']['value']
-#     except KeyError:
-#         raise HTTPException(status_code=404,
-#                             detail='No label found for ELSST term')
-#
-#     variable[varLabel] = {
-#         "typeName": varLabel,
-#         "multiple": False,
-#         "typeClass": "primitive",
-#         "value": label
-#     }
