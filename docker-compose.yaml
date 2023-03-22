@@ -9,3 +9,5 @@ services:
       - "./${APPLICATION_DIR}:/root/${APPLICATION_DIR}"
     ports:
       - "${PORT}:${PORT}"
+    environment:
+      PYTHONPATH: "/root/src/"

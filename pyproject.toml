@@ -3,6 +3,7 @@ name = "metadata-enhancer"
 version = "0.1.0"
 description = "A project allowing one to set up a FastAPI based Microservice, using cookiecutter"
 authors = ["Thomas van Erven"]
+include = ["src"]
 
 [tool.poetry.dependencies]
 python = "^3.9.14"
