@@ -1,0 +1,23 @@
+{
+  "head": {
+    "vars": [
+      "iri",
+      "lbl"
+    ]
+  },
+  "results": {
+    "bindings": [
+      {
+        "iri": {
+          "type": "uri",
+          "value": "https://elsst.cessda.eu/id/3/c5310e73-4a7f-4ef6-b8d4-6fe62cef9281"
+        },
+        "lbl": {
+          "type": "literal",
+          "xml:lang": "nl",
+          "value": "ONDERWIJS"
+        }
+      }
+    ]
+  }
+}
