@@ -48,5 +48,5 @@ class VariableEnhancer(MetadataEnhancer):
         term = terms[0]
         uri = _try_for_key(term, ['iri', 'value'],
                            'No uri found for ELSST term')
-        variable_type_name = 'variableURI'
+        variable_type_name = 'variableVocabularyURI'
         self.add_term_to_metadata_field(variable_dict, variable_type_name, uri)
