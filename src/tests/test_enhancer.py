@@ -1,10 +1,7 @@
 import json
 import pytest
-import sys
 
 from fastapi import HTTPException
-
-print(sys.path)
 from ..enhancers import KeywordEnhancer, VariableEnhancer
 
 
@@ -22,9 +19,11 @@ def cbs_metadata():
 def cbs_keyword_output():
     return open_json_file("test-data/output-data/cbs-keyword-output.json")
 
+
 @pytest.fixture()
 def cbs_variable_output():
     return open_json_file("test-data/output-data/cbs-variable-output.json")
+
 
 @pytest.fixture()
 def keyword_enhancer(cbs_metadata):
@@ -52,6 +51,7 @@ def test_e2e_keyword_enhancer(keyword_enhancer, cbs_keyword_output):
 
 def test_e2e_variable_enhancer(variable_enhancer, cbs_variable_output):
     # Application test of the variable enhancer
+
     variable_enhancer.enhance_metadata()
     assert variable_enhancer.metadata == cbs_variable_output
 
