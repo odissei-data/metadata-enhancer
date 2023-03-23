@@ -239,8 +239,8 @@
                   "typeClass": "primitive",
                   "value": "Oorsprong RINPERSOON: codes geven status van koppeling met BRP"
                 },
-                "variableURI": {
-                  "typeName": "variableURI",
+                "variableVocabularyURI": {
+                  "typeName": "variableVocabularyURI",
                   "multiple": false,
                   "typeClass": "primitive",
                   "value": "https://portal.odissei-data.nl/data/cbs/variableThesaurus/c0319fa5d21632b8686b747ede7c6baca868dc0f9fb088a553d8525efc1696e42"
@@ -259,8 +259,8 @@
                   "typeClass": "primitive",
                   "value": "Betekenis- en dimensieloos identificatienummer ter vervanging van het BSN"
                 },
-                "variableURI": {
-                  "typeName": "variableURI",
+                "variableVocabularyURI": {
+                  "typeName": "variableVocabularyURI",
                   "multiple": false,
                   "typeClass": "primitive",
                   "value": "https://portal.odissei-data.nl/data/cbs/variableThesaurus/c05335fa632d24349e7d8323a620b2f01c8ab996e830edfcfbf462efd69300382"
@@ -279,8 +279,8 @@
                   "typeClass": "primitive",
                   "value": "Door het UWV bepaalde identificatie van de inkomstenverhouding, door het CBS versleuteld"
                 },
-                "variableURI": {
-                  "typeName": "variableURI",
+                "variableVocabularyURI": {
+                  "typeName": "variableVocabularyURI",
                   "multiple": false,
                   "typeClass": "primitive",
                   "value": "https://portal.odissei-data.nl/data/cbs/variableThesaurus/c81db944f452b06317327df21eaf41011cab93bb2009b1e6843b636806432cc42"

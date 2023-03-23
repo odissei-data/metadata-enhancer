@@ -1,7 +1,7 @@
 import requests
 from fastapi import HTTPException
 
-from utils import _try_for_key
+from .utils import _try_for_key
 
 
 class MetadataEnhancer:

@@ -1,5 +1,5 @@
-from enhancers.MetadataEnhancer import MetadataEnhancer
-from utils import _try_for_key
+from .utils import _try_for_key
+from .MetadataEnhancer import MetadataEnhancer
 
 
 class KeywordEnhancer(MetadataEnhancer):
