@@ -4,10 +4,8 @@ import sys
 
 from fastapi import HTTPException
 
-from enhancers.VariableEnhancer import VariableEnhancer
-
 print(sys.path)
-from enhancers.KeywordEnhancer import KeywordEnhancer
+from enhancers import KeywordEnhancer, VariableEnhancer
 
 
 def open_json_file(json_path):
