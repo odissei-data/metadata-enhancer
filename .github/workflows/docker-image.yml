@@ -30,7 +30,7 @@ jobs:
       - name: Perform gruesome hack
         run: |
           cp -r pyproject.toml src/stub.toml
-          cp -r pyproject.toml src/tests/stub.toml
+          cp -r pyproject.toml src/enhancers/tests/stub.toml
       - name: Run Pytest
         run: |
           cd src/
