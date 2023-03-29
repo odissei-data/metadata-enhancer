@@ -20,5 +20,5 @@ def _try_for_key(dictionary: dict, key_path: list, exception_detail: str):
         try:
             value = value[key]
         except (KeyError, TypeError):
-            raise HTTPException(status_code=400, detail=exception_detail)
+            raise HTTPException(status_code=422, detail=exception_detail)
     return value

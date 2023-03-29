@@ -301,8 +301,8 @@
             "typeClass": "compound",
             "value": [
               {
-                "keyword": {
-                  "typeName": "keyword",
+                "matchedKeyword": {
+                  "typeName": "matchedKeyword",
                   "multiple": false,
                   "typeClass": "primitive",
                   "value": "Werkgelegenheid"
