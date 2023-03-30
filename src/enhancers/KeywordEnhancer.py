@@ -88,8 +88,8 @@ class KeywordEnhancer(MetadataEnhancer):
         :param keyword: The keyword to add to the field.
         """
         topic = {
-            "keyword": {
-                "typeName": 'keyword',
+            "matchedKeyword": {
+                "typeName": 'matchedKeyword',
                 "multiple": False,
                 "typeClass": "primitive",
                 "value": keyword
