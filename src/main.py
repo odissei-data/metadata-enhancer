@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI
 
 from enhancers.KeywordEnhancer import KeywordEnhancer
@@ -6,6 +8,11 @@ from schema.input import EnhancerInput
 from version import get_version
 
 app = FastAPI()
+
+KEYWORD_ENDPOINT = os.environ['KEYWORD_ENDPOINT']
+VARIABLE_ENDPOINT = os.environ['VARIABLE_ENDPOINT']
+KEYWORD_VOCABULARY_URL = os.environ['KEYWORD_VOCABULARY_URL']
+VARIABLE_VOCABULARY_URL = os.environ['VARIABLE_VOCABULARY_URL']
 
 
 @app.get("/version", tags=["Version"])
@@ -19,8 +26,8 @@ async def dataverse_keyword_enhancer(
         enhancer_input: EnhancerInput) -> dict:
     keyword_enhancer = KeywordEnhancer(
         enhancer_input.metadata,
-        'matchElsstTermForKeyword',
-        'https://fuseki.odissei.nl/skosmos/sparql'
+        KEYWORD_ENDPOINT,
+        KEYWORD_VOCABULARY_URL
     )
     keyword_enhancer.enhance_metadata()
     return keyword_enhancer.metadata
@@ -30,8 +37,8 @@ async def dataverse_keyword_enhancer(
 async def dataverse_metadata_enhancer(enhancer_input: EnhancerInput) -> dict:
     variable_enhancer = VariableEnhancer(
         enhancer_input.metadata,
-        'getCbsVarUri',
-        'https://fuseki.odissei.nl/skosmos/sparql'
+        VARIABLE_ENDPOINT,
+        VARIABLE_VOCABULARY_URL
     )
     variable_enhancer.enhance_metadata()
     return variable_enhancer.metadata
