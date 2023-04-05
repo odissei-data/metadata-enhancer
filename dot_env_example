@@ -7,7 +7,7 @@ PYTHONPATH: "/root/src/"
 # URL'S
 KEYWORD_VOCABULARY_URL='https://fuseki.odissei.nl/skosmos/sparql'
 VARIABLE_VOCABULARY_URL='https://fuseki.odissei.nl/skosmos/sparql'
-GRLC_API_URL='https://grlc.odissei.nl/api-git/odissei-data/grlc/'
+ROOT_API_URL='https://grlc.odissei.nl/api-git/odissei-data/grlc/'
 
 # Endpoints
 KEYWORD_ENDPOINT='matchElsstTermForKeyword'
