@@ -29,6 +29,7 @@ def cbs_variable_output():
 def keyword_enhancer(cbs_metadata):
     return KeywordEnhancer(
         cbs_metadata,
+        'https://grlc.odissei.nl/api-git/odissei-data/grlc/'
         'matchElsstTermForKeyword',
         'https://fuseki.odissei.nl/skosmos/sparql'
     )
@@ -38,7 +39,7 @@ def keyword_enhancer(cbs_metadata):
 def variable_enhancer(cbs_metadata):
     return VariableEnhancer(
         cbs_metadata,
-        'getCbsVarUri',
+        'https://grlc.odissei.nl/api-git/odissei-data/grlc/getCbsVarUri',
         'https://fuseki.odissei.nl/skosmos/sparql'
     )
 
@@ -83,7 +84,6 @@ def test_query_matched_terms(variable_enhancer):
     assert 'results' in terms_dict
     assert 'bindings' in terms_dict['results']
     assert len(terms_dict['results']['bindings']) == 0
-
 
 # def test_add_terms_to_metadata(variable_enhancer):
 #     # Test adding terms to a variable metadata field

@@ -9,6 +9,7 @@ from version import get_version
 
 app = FastAPI()
 
+ROOT_API_URL = os.environ['ROOT_API_URL']
 KEYWORD_ENDPOINT = os.environ['KEYWORD_ENDPOINT']
 VARIABLE_ENDPOINT = os.environ['VARIABLE_ENDPOINT']
 KEYWORD_VOCABULARY_URL = os.environ['KEYWORD_VOCABULARY_URL']
@@ -26,7 +27,7 @@ async def dataverse_keyword_enhancer(
         enhancer_input: EnhancerInput) -> dict:
     keyword_enhancer = KeywordEnhancer(
         enhancer_input.metadata,
-        KEYWORD_ENDPOINT,
+        ROOT_API_URL + KEYWORD_ENDPOINT,
         KEYWORD_VOCABULARY_URL
     )
     keyword_enhancer.enhance_metadata()
@@ -37,7 +38,7 @@ async def dataverse_keyword_enhancer(
 async def dataverse_metadata_enhancer(enhancer_input: EnhancerInput) -> dict:
     variable_enhancer = VariableEnhancer(
         enhancer_input.metadata,
-        VARIABLE_ENDPOINT,
+        ROOT_API_URL + VARIABLE_ENDPOINT,
         VARIABLE_VOCABULARY_URL
     )
     variable_enhancer.enhance_metadata()

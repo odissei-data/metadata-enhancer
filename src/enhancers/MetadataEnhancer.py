@@ -5,8 +5,6 @@ from fastapi import HTTPException
 
 from .utils import _try_for_key
 
-GRLC_API_URL = os.environ['GRLC_API_URL']
-
 
 class MetadataEnhancer:
     """ A super class used for enhancing Dataverse metadata.
@@ -64,7 +62,7 @@ class MetadataEnhancer:
         return metadata_field['value']
 
     def query_matched_terms(self, value_to_match: str) -> dict:
-        """ Queries a grlc endpoint for terms matching the given value.
+        """ Queries an endpoint for terms matching the given value.
 
         :param value_to_match: The value to use for finding matches.
         """
@@ -79,7 +77,7 @@ class MetadataEnhancer:
             'endpoint': self.sparql_endpoint,
         }
 
-        url = GRLC_API_URL + self.endpoint
+        url = self.endpoint
         response = requests.get(
             url,
             params=params,
