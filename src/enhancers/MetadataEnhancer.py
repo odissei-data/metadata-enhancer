@@ -25,8 +25,7 @@ class MetadataEnhancer:
         self.sparql_endpoint = sparql_endpoint
         self.metadata_blocks = _try_for_key(
             metadata,
-            ['datasetVersion', 'metadataBlocks'],
-            'Metadata does not contain datasetVersion or metadataBlocks key'
+            'datasetVersion.metadataBlocks',
         )
 
     @property
@@ -45,9 +44,7 @@ class MetadataEnhancer:
         """
         fields = _try_for_key(
             self.metadata_blocks,
-            [metadata_block, 'fields'],
-            'variableInformation metadata block not found. '
-            'JSON might be formatted incorrectly.'
+            f'{metadata_block}.fields'
         )
 
         metadata_field = next((field for field in fields if
