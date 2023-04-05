@@ -34,13 +34,12 @@ class KeywordEnhancer(MetadataEnhancer):
     def add_terms_to_metadata(self, terms: list, topic: dict):
         """ Goes through all the retrieved terms and adds them to the metadata.
 
-            For every term we add a URI and a label to the matched keyword in
-            the ELSST Topics block.
+        For every term we add a URI and a label to the matched keyword in
+        the ELSST Topics block.
 
-            There is a limit of 3 terms that can be added for a single keyword.
-            The metadata block contains fields for elsstVarUri1, elsstVarUri2,
-            and elsstVarUri3. The same goes for the labels.
-
+        There is a limit of 3 terms that can be added for a single keyword.
+        The metadata block contains fields for elsstVarUri1, elsstVarUri2,
+        and elsstVarUri3. The same goes for the labels.
 
         :param terms: The terms matched to a specific keyword.
         :param topic: The topic field that keyword is in.
