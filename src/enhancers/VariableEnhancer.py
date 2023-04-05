@@ -18,18 +18,13 @@ class VariableEnhancer(MetadataEnhancer):
                                                  'variableInformation')
 
         for variable_dict in variables:
-            variable = _try_for_key(variable_dict, ['variableName', 'value'],
-                                    'variableName field value not found')
+            variable = _try_for_key(variable_dict, 'variableName.value')
 
             terms_dict = self.query_matched_terms(
                 variable
             )
 
-            terms = _try_for_key(
-                terms_dict,
-                ['results', 'bindings'],
-                'grlc endpoint returned badly formatted JSON.'
-            )
+            terms = _try_for_key(terms_dict, 'results.bindings')
             self.add_terms_to_metadata(terms, variable_dict)
 
     def add_terms_to_metadata(self, terms: list, variable_dict: dict):
@@ -46,7 +41,6 @@ class VariableEnhancer(MetadataEnhancer):
         if not terms:
             return
         term = terms[0]
-        uri = _try_for_key(term, ['iri', 'value'],
-                           'No uri found for ELSST term')
+        uri = _try_for_key(term, 'iri.value')
         variable_type_name = 'variableVocabularyURI'
         self.add_term_to_metadata_field(variable_dict, variable_type_name, uri)

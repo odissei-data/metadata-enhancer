@@ -1,11 +1,15 @@
+import os
+
 import requests
 from fastapi import HTTPException
 
 from .utils import _try_for_key
 
+GRLC_API_URL = os.environ['GRLC_API_URL']
+
 
 class MetadataEnhancer:
-    """ A super class used for enhancing Dataverse metadata
+    """ A super class used for enhancing Dataverse metadata.
 
     The MetadataEnhancer's is a class that describes the steps for enhancement.
     A class that implements MetadataEnhancer will need to mainly implement the
@@ -25,8 +29,7 @@ class MetadataEnhancer:
         self.sparql_endpoint = sparql_endpoint
         self.metadata_blocks = _try_for_key(
             metadata,
-            ['datasetVersion', 'metadataBlocks'],
-            'Metadata does not contain datasetVersion or metadataBlocks key'
+            'datasetVersion.metadataBlocks',
         )
 
     @property
@@ -45,9 +48,7 @@ class MetadataEnhancer:
         """
         fields = _try_for_key(
             self.metadata_blocks,
-            [metadata_block, 'fields'],
-            'variableInformation metadata block not found. '
-            'JSON might be formatted incorrectly.'
+            f'{metadata_block}.fields'
         )
 
         metadata_field = next((field for field in fields if
@@ -78,8 +79,7 @@ class MetadataEnhancer:
             'endpoint': self.sparql_endpoint,
         }
 
-        url = 'https://grlc.odissei.nl/api-git/odissei-data/grlc/' \
-              + self.endpoint
+        url = GRLC_API_URL + self.endpoint
         response = requests.get(
             url,
             params=params,
