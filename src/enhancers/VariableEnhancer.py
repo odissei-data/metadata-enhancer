@@ -1,5 +1,9 @@
+import asyncio
+import httpx
+from fastapi import HTTPException
+
 from .MetadataEnhancer import MetadataEnhancer
-from .utils import _try_for_key
+from .utils import _try_for_key, gather_with_concurrency
 
 
 class VariableEnhancer(MetadataEnhancer):
@@ -7,7 +11,7 @@ class VariableEnhancer(MetadataEnhancer):
     def __init__(self, metadata: dict, endpoint: str, sparql_endpoint: str):
         super().__init__(metadata, endpoint, sparql_endpoint)
 
-    def enhance_metadata(self):
+    async def enhance_metadata(self):
         """ enhance_metadata implementation for the variable enhancements.
 
         First the variables in the variableInformation metadata block are
@@ -16,16 +20,41 @@ class VariableEnhancer(MetadataEnhancer):
         """
         variables = self.get_value_from_metadata('variable',
                                                  'variableInformation')
+        async with httpx.AsyncClient() as client:
+            tasks = []
+            for variable_dict in variables:
+                variable = _try_for_key(variable_dict,
+                                        'variableName.value')
+                tasks.append(
+                    self.query_matched_terms_async(client, variable_dict,
+                                                   variable))
 
-        for variable_dict in variables:
-            variable = _try_for_key(variable_dict, 'variableName.value')
+            results = await gather_with_concurrency(45, *tasks)
+            for terms, variable_dict in results:
+                self.add_terms_to_metadata(terms, variable_dict)
 
-            terms_dict = self.query_matched_terms(
-                variable
+    async def query_matched_terms_async(self, client, variable_dict, variable):
+        # Build request URL with the variable to match
+        headers = {
+            'accept': 'application/json',
+            'Content-type': 'application/json',
+        }
+
+        params = {
+            'label': variable,
+            'endpoint': self.sparql_endpoint,
+        }
+
+        response = await client.get(url=self.endpoint, params=params,
+                                    headers=headers)
+        if response.status_code != 200:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Failed to query matched term for variable: {variable}"
             )
 
-            terms = _try_for_key(terms_dict, 'results.bindings')
-            self.add_terms_to_metadata(terms, variable_dict)
+        terms = _try_for_key(response.json(), 'results.bindings')
+        return terms, variable_dict
 
     def add_terms_to_metadata(self, terms: list, variable_dict: dict):
         """ Adds the terms matched on variables to the metadata

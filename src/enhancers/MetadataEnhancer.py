@@ -1,5 +1,3 @@
-import os
-
 import requests
 from fastapi import HTTPException
 
@@ -77,9 +75,8 @@ class MetadataEnhancer:
             'endpoint': self.sparql_endpoint,
         }
 
-        url = self.endpoint
         response = requests.get(
-            url,
+            url=self.endpoint,
             params=params,
             headers=headers,
         )

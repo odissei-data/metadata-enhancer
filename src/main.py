@@ -1,4 +1,5 @@
 import os
+import time
 
 from fastapi import FastAPI
 
@@ -36,10 +37,13 @@ async def dataverse_keyword_enhancer(
 
 @app.post('/dataverse-variable-enhancer', tags=['Dataverse metadata enhancer'])
 async def dataverse_metadata_enhancer(enhancer_input: EnhancerInput) -> dict:
+    start_time = time.time()
     variable_enhancer = VariableEnhancer(
         enhancer_input.metadata,
         ROOT_API_URL + VARIABLE_ENDPOINT,
         VARIABLE_VOCABULARY_URL
     )
-    variable_enhancer.enhance_metadata()
+    await variable_enhancer.enhance_metadata()
+    end_time = time.time()  # record end time
+    print(f"Metadata enhancement took {end_time - start_time} seconds")
     return variable_enhancer.metadata
