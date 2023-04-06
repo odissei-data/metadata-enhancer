@@ -16,6 +16,7 @@ dynaconf = "^3.1.11"
 jmespath = "^1.0.1"
 httpx = "^0.23.3"
 pytest-asyncio = "^0.21.0"
+cachetools = "^5.3.0"
 
 [tool.poetry.dev-dependencies]
 ipython = "^8.5.0"

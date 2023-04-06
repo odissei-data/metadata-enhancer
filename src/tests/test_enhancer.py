@@ -1,8 +1,11 @@
 import json
 import pytest
+from cachetools import TTLCache
 
 from fastapi import HTTPException
 from ..enhancers import KeywordEnhancer, VariableEnhancer
+
+cache = TTLCache(maxsize=1024, ttl=12000)
 
 
 def open_json_file(json_path):
@@ -40,7 +43,8 @@ def variable_enhancer(cbs_metadata):
     return VariableEnhancer(
         cbs_metadata,
         'https://grlc.odissei.nl/api-git/odissei-data/grlc/getCbsVarUri',
-        'https://fuseki.odissei.nl/skosmos/sparql'
+        'https://fuseki.odissei.nl/skosmos/sparql',
+        cache
     )
 
 

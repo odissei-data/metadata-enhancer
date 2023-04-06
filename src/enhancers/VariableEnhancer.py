@@ -1,15 +1,23 @@
-import asyncio
+import copy
+
 import httpx
+from threading import Lock
 from fastapi import HTTPException
+from cachetools import TTLCache
 
 from .MetadataEnhancer import MetadataEnhancer
 from .utils import _try_for_key, gather_with_concurrency
 
+CONCURRENCY_LIMIT = 25
+
 
 class VariableEnhancer(MetadataEnhancer):
 
-    def __init__(self, metadata: dict, endpoint: str, sparql_endpoint: str):
+    def __init__(self, metadata: dict, endpoint: str, sparql_endpoint: str,
+                 cache: TTLCache):
         super().__init__(metadata, endpoint, sparql_endpoint)
+        self.cache = cache
+        self.lock = Lock()
 
     async def enhance_metadata(self):
         """ enhance_metadata implementation for the variable enhancements.
@@ -25,12 +33,20 @@ class VariableEnhancer(MetadataEnhancer):
             for variable_dict in variables:
                 variable = _try_for_key(variable_dict,
                                         'variableName.value')
-                tasks.append(
-                    self.query_matched_terms_async(client, variable_dict,
-                                                   variable))
+                cached_result = self.cache.get(variable)
+                if cached_result is not None:
+                    terms, variable_dict = cached_result
+                    self.add_terms_to_metadata(terms, variable_dict)
+                else:
+                    tasks.append(
+                        self.query_matched_terms_async(client, variable_dict,
+                                                       variable))
 
-            results = await gather_with_concurrency(45, *tasks)
-            for terms, variable_dict in results:
+            results = await gather_with_concurrency(CONCURRENCY_LIMIT, *tasks)
+            for terms, variable, variable_dict in results:
+                with self.lock:
+                    print(f'variable: {variable}')
+                    self.cache[variable] = (terms, variable_dict)
                 self.add_terms_to_metadata(terms, variable_dict)
 
     async def query_matched_terms_async(self, client, variable_dict, variable):
@@ -54,7 +70,7 @@ class VariableEnhancer(MetadataEnhancer):
             )
 
         terms = _try_for_key(response.json(), 'results.bindings')
-        return terms, variable_dict
+        return terms, variable, variable_dict
 
     def add_terms_to_metadata(self, terms: list, variable_dict: dict):
         """ Adds the terms matched on variables to the metadata
