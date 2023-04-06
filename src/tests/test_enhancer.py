@@ -50,10 +50,11 @@ def test_e2e_keyword_enhancer(keyword_enhancer, cbs_keyword_output):
     assert keyword_enhancer.metadata == cbs_keyword_output
 
 
-def test_e2e_variable_enhancer(variable_enhancer, cbs_variable_output):
+@pytest.mark.asyncio
+async def test_e2e_variable_enhancer(variable_enhancer, cbs_variable_output):
     # Application test of the variable enhancer
 
-    variable_enhancer.enhance_metadata()
+    await variable_enhancer.enhance_metadata()
     assert variable_enhancer.metadata == cbs_variable_output
 
 
