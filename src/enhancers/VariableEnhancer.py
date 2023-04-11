@@ -35,7 +35,7 @@ class VariableEnhancer(MetadataEnhancer):
                                         'variableName.value')
                 cached_result = self.cache.get(variable)
                 if cached_result is not None:
-                    terms, variable_dict = cached_result
+                    terms = cached_result
                     self.add_terms_to_metadata(terms, variable_dict)
                 else:
                     tasks.append(
@@ -45,7 +45,7 @@ class VariableEnhancer(MetadataEnhancer):
             results = await gather_with_concurrency(CONCURRENCY_LIMIT, *tasks)
             for terms, variable, variable_dict in results:
                 with self.lock:
-                    self.cache[variable] = (terms, copy.deepcopy(variable_dict))
+                    self.cache[variable] = terms
                 self.add_terms_to_metadata(terms, variable_dict)
 
     async def query_matched_terms_async(self, client, variable_dict, variable):
