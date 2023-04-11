@@ -1,4 +1,6 @@
 import json
+from unittest.mock import patch, AsyncMock
+
 import pytest
 from cachetools import TTLCache
 
@@ -55,11 +57,27 @@ def test_e2e_keyword_enhancer(keyword_enhancer, cbs_keyword_output):
 
 
 @pytest.mark.asyncio
-async def test_e2e_variable_enhancer(variable_enhancer, cbs_variable_output):
+async def test_e2e_variable_enhancer(variable_enhancer, cbs_metadata,
+                                     cbs_variable_output):
     # Application test of the variable enhancer
 
     await variable_enhancer.enhance_metadata()
     assert variable_enhancer.metadata == cbs_variable_output
+
+    # Test enhancing with cache
+    http_client_mock = AsyncMock()
+    variable_enhancer_cached = VariableEnhancer(
+        cbs_metadata,
+        'https://grlc.odissei.nl/api-git/odissei-data/grlc/getCbsVarUri',
+        'https://fuseki.odissei.nl/skosmos/sparql',
+        cache
+    )
+
+    with patch('httpx.AsyncClient', return_value=http_client_mock):
+        await variable_enhancer_cached.enhance_metadata()
+
+    assert variable_enhancer_cached.metadata == cbs_variable_output
+    http_client_mock.get.assert_not_called()
 
 
 def test_get_value_cbs_from_metadata(variable_enhancer, cbs_metadata):
