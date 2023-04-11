@@ -5,6 +5,7 @@ import pytest
 from cachetools import TTLCache
 
 from fastapi import HTTPException
+
 from ..enhancers import KeywordEnhancer, VariableEnhancer
 
 cache = TTLCache(maxsize=1024, ttl=12000)
@@ -93,20 +94,21 @@ def test_get_value_cbs_from_metadata(variable_enhancer, cbs_metadata):
                                                   'variableInformation')
 
 
-def test_query_matched_terms(variable_enhancer):
+def test_query_enhancements(variable_enhancer):
     # Test querying for a term that exists in the SPARQL endpoint
-    terms_dict = variable_enhancer.query_matched_terms('RINPERSOON')
-    assert isinstance(terms_dict, dict)
-    assert 'results' in terms_dict
-    assert 'bindings' in terms_dict['results']
-    assert len(terms_dict['results']['bindings']) > 0
+    enhancements_dict = variable_enhancer.query_enhancements('RINPERSOON')
+    assert isinstance(enhancements_dict, dict)
+    assert 'results' in enhancements_dict
+    assert 'bindings' in enhancements_dict['results']
+    assert len(enhancements_dict['results']['bindings']) > 0
 
     # Test querying for a term that does not exist in the SPARQL endpoint
-    terms_dict = variable_enhancer.query_matched_terms('nonexistent_term')
-    assert isinstance(terms_dict, dict)
-    assert 'results' in terms_dict
-    assert 'bindings' in terms_dict['results']
-    assert len(terms_dict['results']['bindings']) == 0
+    enhancements_dict = variable_enhancer.query_enhancements(
+        'nonexistent_enhancement')
+    assert isinstance(enhancements_dict, dict)
+    assert 'results' in enhancements_dict
+    assert 'bindings' in enhancements_dict['results']
+    assert len(enhancements_dict['results']['bindings']) == 0
 
 # def test_add_terms_to_metadata(variable_enhancer):
 #     # Test adding terms to a variable metadata field
