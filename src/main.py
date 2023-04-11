@@ -1,5 +1,6 @@
 import os
 
+from cachetools import TTLCache
 from fastapi import FastAPI
 
 from enhancers.KeywordEnhancer import KeywordEnhancer
@@ -14,6 +15,12 @@ KEYWORD_ENDPOINT = os.environ['KEYWORD_ENDPOINT']
 VARIABLE_ENDPOINT = os.environ['VARIABLE_ENDPOINT']
 KEYWORD_VOCABULARY_URL = os.environ['KEYWORD_VOCABULARY_URL']
 VARIABLE_VOCABULARY_URL = os.environ['VARIABLE_VOCABULARY_URL']
+
+MAX_SIZE = 1024
+TTL = 12000
+
+# Create a global cache object
+cache = TTLCache(maxsize=MAX_SIZE, ttl=TTL)
 
 
 @app.get("/version", tags=["Version"])
@@ -39,7 +46,8 @@ async def dataverse_metadata_enhancer(enhancer_input: EnhancerInput) -> dict:
     variable_enhancer = VariableEnhancer(
         enhancer_input.metadata,
         ROOT_API_URL + VARIABLE_ENDPOINT,
-        VARIABLE_VOCABULARY_URL
+        VARIABLE_VOCABULARY_URL,
+        cache
     )
-    variable_enhancer.enhance_metadata()
+    await variable_enhancer.enhance_metadata()
     return variable_enhancer.metadata
