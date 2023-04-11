@@ -1,6 +1,8 @@
 from .utils import _try_for_key
 from .MetadataEnhancer import MetadataEnhancer
 
+MAX_ENHANCEMENTS = 3
+
 
 class KeywordEnhancer(MetadataEnhancer):
     """ This class can be used to enhance the keywords in DV metadata. """
@@ -46,7 +48,7 @@ class KeywordEnhancer(MetadataEnhancer):
         :param topic: The topic field that keyword is in.
         """
 
-        max_enhancements = min(len(enhancements), 3)
+        max_enhancements = min(len(enhancements), MAX_ENHANCEMENTS)
         for i in range(max_enhancements):
             counter = i + 1
             self.add_enhancement_uri(enhancements[i], counter, topic)
