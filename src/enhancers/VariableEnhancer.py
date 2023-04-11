@@ -2,6 +2,7 @@ import httpx
 from threading import Lock
 from fastapi import HTTPException
 from cachetools import TTLCache
+from httpx import AsyncClient
 
 from .MetadataEnhancer import MetadataEnhancer
 from .utils import _try_for_key, gather_with_concurrency
@@ -48,7 +49,8 @@ class VariableEnhancer(MetadataEnhancer):
                     self.cache[variable] = enhancements
                 self.add_enhancements_to_metadata(enhancements, variable_dict)
 
-    async def query_enhancements_async(self, client, variable_dict, variable):
+    async def query_enhancements_async(self, client: AsyncClient,
+                                       variable_dict: dict, variable: str):
         """ async query implementation for the variable matching API call
 
         :param client: httpx client.
