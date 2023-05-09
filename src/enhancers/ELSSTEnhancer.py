@@ -4,8 +4,8 @@ from .MetadataEnhancer import MetadataEnhancer
 MAX_ENHANCEMENTS = 3
 
 
-class KeywordEnhancer(MetadataEnhancer):
-    """ This class can be used to enhance the keywords in DV metadata. """
+class ELSSTEnhancer(MetadataEnhancer):
+    """ This class can be used to enhance terms with ELSST in DV metadata. """
 
     def __init__(self, metadata: dict, endpoint: str, sparql_endpoint: str):
         """
@@ -15,37 +15,46 @@ class KeywordEnhancer(MetadataEnhancer):
         self.elsst_topics = self.create_elsst_topics()
 
     def enhance_metadata(self):
-        """ enhance_metadata implementation for the keyword enhancements.
+        """ enhance_metadata implementation for the term enhancements. """
 
-        First the keywords in the citation metadata block are retrieved.
-        Then for all keywords fetch enhancements using the grlc API.
-        Finally, the enhancements are added to the ELSST Topic metadata block.
+        self.ELSST_enhance_metadata('citation', 'keyword', 'keywordValue')
+        self.ELSST_enhance_metadata('citation', 'topicClassification',
+                                    'topicClassValue')
+
+    def ELSST_enhance_metadata(self, metadata_block, compound_field, field):
+        """ Handles the metadata enhancement of terms using ELSST matches.
+
+        First a list of terms in the give compound in the given metadata block
+        is retrieved. Then for all terms we match a term using the grlc API.
+        Finally, the terms are added to the ELSST Topic metadata block.
+
+        :param metadata_block: Contains compound field with matchable terms.
+        :param compound_field: Contains the field that holds matchable terms.
+        :param field: The field containing the matchable terms.
         """
-        keywords = self.get_value_from_metadata('keyword', 'citation')
+        matchable_terms = self.get_value_from_metadata(compound_field,
+                                                       metadata_block)
+        for term_dict in matchable_terms:
+            term = _try_for_key(term_dict, f'{field}.value')
 
-        for keyword_dict in keywords:
-            keyword = _try_for_key(keyword_dict, 'keywordValue.value')
-
-            enhancements_dict = self.query_enhancements(
-                keyword,
-            )
+            enhancements_dict = self.query_matched_terms(term)
 
             enhancements = _try_for_key(enhancements_dict, 'results.bindings')
-            topic = self.create_elsst_topic_keyword(keyword)
-            self.add_enhancements_to_metadata(enhancements, topic)
+            topic = self.create_elsst_topic(term)
+            self.add_terms_to_metadata(enhancements, topic)
 
     def add_enhancements_to_metadata(self, enhancements: list, topic: dict):
         """ Goes through retrieved enhancements and adds them to the metadata.
 
-        For every enhancement we add a URI and a label to the matched keyword
+        For every enhancement we add a URI and a label to the matched term
         in the ELSST Topics block.
 
-        There is a limit of 3 enhancements added for a single keyword.
+        There is a limit of 3 enhancements added for a single term.
         The metadata block contains fields for elsstVarUri1, elsstVarUri2,
         and elsstVarUri3. The same goes for the labels.
 
-        :param enhancements: The enhancements for a specific keyword.
-        :param topic: The topic field that keyword is in.
+        :param enhancements: The enhancements for a specific term.
+        :param topic: The topic field that term is in.
         """
 
         max_enhancements = min(len(enhancements), MAX_ENHANCEMENTS)
@@ -76,17 +85,17 @@ class KeywordEnhancer(MetadataEnhancer):
         }
         return self.metadata_blocks["elsstTopic"]["fields"]
 
-    def create_elsst_topic_keyword(self, keyword: str) -> dict:
-        """ Creates a topic field dict for a given keyword.
+    def create_elsst_topic(self, term: str) -> dict:
+        """ Creates a topic field dict for a given term.
 
-        :param keyword: The keyword to add to the field.
+        :param term: The term to add to the field.
         """
         topic = {
-            "matchedKeyword": {
-                "typeName": 'matchedKeyword',
+            "matchedTerm": {
+                "typeName": 'matchedTerm',
                 "multiple": False,
                 "typeClass": "primitive",
-                "value": keyword
+                "value": term
             }
         }
 

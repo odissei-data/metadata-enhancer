@@ -3,10 +3,8 @@ from unittest.mock import patch, AsyncMock
 
 import pytest
 from cachetools import TTLCache
-
 from fastapi import HTTPException
-
-from ..enhancers import KeywordEnhancer, VariableEnhancer
+from ..enhancers import ELSSTEnhancer, VariableEnhancer
 
 cache = TTLCache(maxsize=1024, ttl=12000)
 
@@ -32,8 +30,8 @@ def cbs_variable_output():
 
 
 @pytest.fixture()
-def keyword_enhancer(cbs_metadata):
-    return KeywordEnhancer(
+def ELSST_enhancer(cbs_metadata):
+    return ELSSTEnhancer(
         cbs_metadata,
         'https://grlc.odissei.nl/api-git/odissei-data/grlc/'
         'matchElsstTermForKeyword',
@@ -51,10 +49,10 @@ def variable_enhancer(cbs_metadata):
     )
 
 
-def test_e2e_keyword_enhancer(keyword_enhancer, cbs_keyword_output):
+def test_e2e_ELSST_enhancer(keyword_enhancer, cbs_keyword_output):
     # Application test of the keyword enhancer
-    keyword_enhancer.enhance_metadata()
-    assert keyword_enhancer.metadata == cbs_keyword_output
+    ELSST_enhancer.enhance_metadata()
+    assert ELSST_enhancer.metadata == cbs_keyword_output
 
 
 @pytest.mark.asyncio
