@@ -85,7 +85,7 @@ class MetadataEnhancer:
                                 detail=response.text)
         return response.json()
 
-    def add_add_enhancements_to_metadata(self, enhancements: list,
+    def add_enhancements_to_metadata(self, enhancements: list,
                                          field_dict: dict):
         pass
 
