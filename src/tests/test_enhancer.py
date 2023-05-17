@@ -35,7 +35,7 @@ def ELSST_enhancer(cbs_metadata):
         cbs_metadata,
         'https://grlc.odissei.nl/api-git/odissei-data/grlc/'
         'matchElsstTermForKeyword',
-        'https://fuseki.odissei.nl/skosmos/sparql'
+        'https://fuseki.dev.odissei.nl/skosmos/sparql'
     )
 
 
@@ -44,14 +44,15 @@ def variable_enhancer(cbs_metadata):
     return VariableEnhancer(
         cbs_metadata,
         'https://grlc.odissei.nl/api-git/odissei-data/grlc/getCbsVarUri',
-        'https://fuseki.odissei.nl/skosmos/sparql',
+        'https://fuseki.dev.odissei.nl/skosmos/sparql',
         cache
     )
 
 
-def test_e2e_ELSST_enhancer(keyword_enhancer, cbs_keyword_output):
-    # Application test of the keyword enhancer
+def test_e2e_ELSST_enhancer(ELSST_enhancer, cbs_keyword_output):
+    # Application test of the ELSST_enhancer
     ELSST_enhancer.enhance_metadata()
+    print(ELSST_enhancer.metadata)
     assert ELSST_enhancer.metadata == cbs_keyword_output
 
 
@@ -68,7 +69,7 @@ async def test_e2e_variable_enhancer(variable_enhancer, cbs_metadata,
     variable_enhancer_cached = VariableEnhancer(
         cbs_metadata,
         'https://grlc.odissei.nl/api-git/odissei-data/grlc/getCbsVarUri',
-        'https://fuseki.odissei.nl/skosmos/sparql',
+        'https://fuseki.dev.odissei.nl/skosmos/sparql',
         cache
     )
 

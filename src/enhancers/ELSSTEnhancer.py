@@ -12,7 +12,7 @@ class ELSSTEnhancer(MetadataEnhancer):
         The ELSST Topics metadata block is created to add the enhancements to.
         """
         super().__init__(metadata, endpoint, sparql_endpoint)
-        self.elsst_topics = self.create_elsst_terms()
+        self.enrichment_block = self.create_enrichment_block()
 
     def enhance_metadata(self):
         """ enhance_metadata implementation for the term enhancements. """
@@ -34,14 +34,17 @@ class ELSSTEnhancer(MetadataEnhancer):
         """
         matchable_terms = self.get_value_from_metadata(compound_field,
                                                        metadata_block)
+        print(matchable_terms)
         for term_dict in matchable_terms:
             term = _try_for_key(term_dict, f'{field}.value')
 
             enhancements_dict = self.query_enhancements(term)
 
             enhancements = _try_for_key(enhancements_dict, 'results.bindings')
-            topic = self.create_elsst_term(term)
-            self.add_enhancements_to_metadata(enhancements, topic)
+            elsst_term = self.create_elsst_term(term)
+            if enhancements:
+                self.add_enhancements_to_metadata(enhancements, elsst_term)
+                self.add_matched_term(elsst_term)
 
     def add_enhancements_to_metadata(self, enhancements: list, topic: dict):
         """ Goes through retrieved enhancements and adds them to the metadata.
@@ -75,22 +78,22 @@ class ELSSTEnhancer(MetadataEnhancer):
         label_type_name = f'elsstVarLabel{counter}'
         self.add_enhancement_to_metadata_field(term, label_type_name, label)
 
-    def create_elsst_terms(self) -> list:
-        """ Creates the ELSST Topics custom metadata block """
-        self.metadata_blocks["elsstTopic"] = {
-            "displayName": "ELSST Topics",
-            "name": "elsstTopics",
+    def create_enrichment_block(self) -> list:
+        """ Creates the enrichment custom metadata block """
+        self.metadata_blocks["enrichments"] = {
+            "displayName": "Enriched Metadata",
+            "name": "enrichments",
             "fields": [
             ]
         }
-        return self.metadata_blocks["elsstTopic"]["fields"]
+        return self.metadata_blocks["enrichments"]["fields"]
 
     def create_elsst_term(self, term: str) -> dict:
-        """ Creates a topic field dict for a given term.
+        """ Creates an elsst term field dict for a given term.
 
         :param term: The term to add to the field.
         """
-        elsstTerm = {
+        elsst_term = {
             "matchedTerm": {
                 "typeName": 'matchedTerm',
                 "multiple": False,
@@ -99,15 +102,21 @@ class ELSSTEnhancer(MetadataEnhancer):
             }
         }
 
-        self.elsst_topics.append(
+        return elsst_term
+
+    def add_matched_term(self, elsst_term):
+        """
+
+        :param elsst_term:
+        :return:
+        """
+        self.enrichment_block.append(
             {
-                "typeName": "topic",
+                "typeName": "elsstTerm",
                 "multiple": True,
                 "typeClass": "compound",
                 "value": [
-                    elsstTerm
+                    elsst_term
                 ]
             }
         )
-
-        return elsstTerm
