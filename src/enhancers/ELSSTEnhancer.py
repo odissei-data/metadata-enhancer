@@ -9,7 +9,7 @@ class ELSSTEnhancer(MetadataEnhancer):
 
     def __init__(self, metadata: dict, endpoint: str, sparql_endpoint: str):
         """
-        The ELSST Topics metadata block is created to add the enhancements to.
+        The enrichments metadata block is created to add the enhancements to.
         """
         super().__init__(metadata, endpoint, sparql_endpoint)
         self.enrichment_block = self.create_enrichment_block()
@@ -26,7 +26,7 @@ class ELSSTEnhancer(MetadataEnhancer):
 
         First a list of terms in the give compound in the given metadata block
         is retrieved. Then for all terms we match a term using the grlc API.
-        Finally, the terms are added to the ELSST Topic metadata block.
+        Finally, the terms are added to the enrichments metadata block.
 
         :param metadata_block: Contains compound field with matchable terms.
         :param compound_field: Contains the field that holds matchable terms.
@@ -46,37 +46,39 @@ class ELSSTEnhancer(MetadataEnhancer):
                 self.add_enhancements_to_metadata(enhancements, elsst_term)
                 self.add_matched_term(elsst_term)
 
-    def add_enhancements_to_metadata(self, enhancements: list, topic: dict):
+    def add_enhancements_to_metadata(self, enhancements: list,
+                                     term_field: dict):
         """ Goes through retrieved enhancements and adds them to the metadata.
 
         For every enhancement we add a URI and a label to the matched term
-        in the ELSST Topics block.
+        in the enrichments block.
 
         There is a limit of 3 enhancements added for a single term.
         The metadata block contains fields for elsstVarUri1, elsstVarUri2,
         and elsstVarUri3. The same goes for the labels.
 
         :param enhancements: The enhancements for a specific term.
-        :param topic: The topic field that term is in.
+        :param term_field: The term field that term is in.
         """
 
         max_enhancements = min(len(enhancements), MAX_ENHANCEMENTS)
         for i in range(max_enhancements):
             counter = i + 1
-            self.add_enhancement_uri(enhancements[i], counter, topic)
-            self.add_enhancement_label(enhancements[i], counter, topic)
+            self.add_enhancement_uri(enhancements[i], counter, term_field)
+            self.add_enhancement_label(enhancements[i], counter, term_field)
 
     def add_enhancement_uri(self, enhancement: dict, counter: int,
-                            term: dict):
+                            term_field: dict):
         uri = _try_for_key(enhancement, 'iri.value')
         uri_type_name = f'elsstVarUri{counter}'
-        self.add_enhancement_to_metadata_field(term, uri_type_name, uri)
+        self.add_enhancement_to_metadata_field(term_field, uri_type_name, uri)
 
     def add_enhancement_label(self, enhancement: dict, counter: int,
-                              term: dict):
+                              term_field: dict):
         label = _try_for_key(enhancement, 'lbl.value')
         label_type_name = f'elsstVarLabel{counter}'
-        self.add_enhancement_to_metadata_field(term, label_type_name, label)
+        self.add_enhancement_to_metadata_field(term_field, label_type_name,
+                                               label)
 
     def create_enrichment_block(self) -> list:
         """ Creates the enrichment custom metadata block """
@@ -105,7 +107,7 @@ class ELSSTEnhancer(MetadataEnhancer):
         return elsst_term
 
     def add_matched_term(self, elsst_term):
-        """
+        """ Adds a
 
         :param elsst_term:
         :return:
