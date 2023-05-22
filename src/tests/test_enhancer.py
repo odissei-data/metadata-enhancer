@@ -52,7 +52,6 @@ def variable_enhancer(cbs_metadata):
 def test_e2e_ELSST_enhancer(ELSST_enhancer, cbs_keyword_output):
     # Application test of the ELSST_enhancer
     ELSST_enhancer.enhance_metadata()
-    print(ELSST_enhancer.metadata)
     assert ELSST_enhancer.metadata == cbs_keyword_output
 
 

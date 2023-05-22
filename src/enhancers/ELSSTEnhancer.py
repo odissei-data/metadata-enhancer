@@ -34,7 +34,6 @@ class ELSSTEnhancer(MetadataEnhancer):
         """
         matchable_terms = self.get_value_from_metadata(compound_field,
                                                        metadata_block)
-        print(matchable_terms)
         for term_dict in matchable_terms:
             term = _try_for_key(term_dict, f'{field}.value')
 
