@@ -3,7 +3,7 @@ import os
 from cachetools import TTLCache
 from fastapi import FastAPI
 
-from enhancers.KeywordEnhancer import KeywordEnhancer
+from enhancers.ELSSTEnhancer import ELSSTEnhancer
 from enhancers.VariableEnhancer import VariableEnhancer
 from schema.input import EnhancerInput
 from version import get_version
@@ -32,7 +32,7 @@ async def info():
 @app.post('/dataverse-keyword-enhancer', tags=['Dataverse keyword enhancer'])
 async def dataverse_keyword_enhancer(
         enhancer_input: EnhancerInput) -> dict:
-    keyword_enhancer = KeywordEnhancer(
+    keyword_enhancer = ELSSTEnhancer(
         enhancer_input.metadata,
         ROOT_API_URL + KEYWORD_ENDPOINT,
         KEYWORD_VOCABULARY_URL

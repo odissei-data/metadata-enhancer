@@ -291,18 +291,18 @@
           }
         ]
       },
-      "elsstTopic": {
-        "displayName": "ELSST Topics",
-        "name": "elsstTopics",
+      "enrichments": {
+        "displayName": "Enriched Metadata",
+        "name": "enrichments",
         "fields": [
           {
-            "typeName": "topic",
+            "typeName": "elsstTerm",
             "multiple": true,
             "typeClass": "compound",
             "value": [
               {
-                "matchedKeyword": {
-                  "typeName": "matchedKeyword",
+                "matchedTerm": {
+                  "typeName": "matchedTerm",
                   "multiple": false,
                   "typeClass": "primitive",
                   "value": "Werkgelegenheid"

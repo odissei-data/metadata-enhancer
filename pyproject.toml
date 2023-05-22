@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "metadata-enhancer"
-version = "1.0.0"
+version = "1.1.0"
 description = "A project allowing one to set up a FastAPI based Microservice, using cookiecutter"
-authors = ["Thomas van Erven"]
+authors = ["Fjodor van Rijsselberg"]
 include = ["src"]
 
 [tool.poetry.dependencies]
