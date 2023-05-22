@@ -11,9 +11,9 @@ from version import get_version
 app = FastAPI()
 
 ROOT_API_URL = os.environ['ROOT_API_URL']
-KEYWORD_ENDPOINT = os.environ['KEYWORD_ENDPOINT']
+ELSST_ENDPOINT = os.environ['ELSST_ENDPOINT']
 VARIABLE_ENDPOINT = os.environ['VARIABLE_ENDPOINT']
-KEYWORD_VOCABULARY_URL = os.environ['KEYWORD_VOCABULARY_URL']
+ELSST_VOCABULARY_URL = os.environ['ELSST_VOCABULARY_URL']
 VARIABLE_VOCABULARY_URL = os.environ['VARIABLE_VOCABULARY_URL']
 
 MAX_SIZE = 1024
@@ -29,16 +29,16 @@ async def info():
     return {"version": result}
 
 
-@app.post('/dataverse-keyword-enhancer', tags=['Dataverse keyword enhancer'])
-async def dataverse_keyword_enhancer(
+@app.post('/dataverse-ELSST-enhancer', tags=['Dataverse ELSST enhancer'])
+async def dataverse_ELSST_enhancer(
         enhancer_input: EnhancerInput) -> dict:
-    keyword_enhancer = ELSSTEnhancer(
+    ELSST_enhancer = ELSSTEnhancer(
         enhancer_input.metadata,
-        ROOT_API_URL + KEYWORD_ENDPOINT,
-        KEYWORD_VOCABULARY_URL
+        ROOT_API_URL + ELSST_ENDPOINT,
+        ELSST_VOCABULARY_URL
     )
-    keyword_enhancer.enhance_metadata()
-    return keyword_enhancer.metadata
+    ELSST_enhancer.enhance_metadata()
+    return ELSST_enhancer.metadata
 
 
 @app.post('/dataverse-variable-enhancer', tags=['Dataverse metadata enhancer'])
