@@ -106,10 +106,9 @@ class ELSSTEnhancer(MetadataEnhancer):
         return elsst_term
 
     def add_matched_term(self, elsst_term):
-        """ Adds a
+        """ Adds a matched elsst term to the elsstTerm compound.
 
-        :param elsst_term:
-        :return:
+        :param elsst_term: The matched elsst term field dict.
         """
         self.enrichment_block.append(
             {
