@@ -1,17 +1,14 @@
 from .utils import _try_for_key
 from .MetadataEnhancer import MetadataEnhancer
 
-MAX_ENHANCEMENTS = 3
-
-
 class ELSSTEnhancer(MetadataEnhancer):
     """ This class can be used to enhance terms with ELSST in DV metadata. """
 
-    def __init__(self, metadata: dict, endpoint: str, sparql_endpoint: str):
+    def __init__(self, metadata: dict, enrichment_table: dict):
         """
         The enrichments metadata block is created to add the enhancements to.
         """
-        super().__init__(metadata, endpoint, sparql_endpoint)
+        super().__init__(metadata, enrichment_table)
         self.enrichment_block = self.create_enrichment_block()
 
     def enhance_metadata(self):
@@ -36,45 +33,21 @@ class ELSSTEnhancer(MetadataEnhancer):
                                                        metadata_block)
         for term_dict in matchable_terms:
             term = _try_for_key(term_dict, f'{field}.value')
-
-            enhancements_dict = self.query_enhancements(term)
-
-            enhancements = _try_for_key(enhancements_dict, 'results.bindings')
             elsst_term = self.create_elsst_term(term)
-            if enhancements:
-                self.add_enhancements_to_metadata(enhancements, elsst_term)
+            label = term.upper()
+            uri = self.query_enrichment_table(label)
+            if uri:
+                self.add_enhancement_uri(uri, 1, elsst_term)
+                self.add_enhancement_label(label, 1, elsst_term)
                 self.add_matched_term(elsst_term)
 
-    def add_enhancements_to_metadata(self, enhancements: list,
-                                     term_field: dict):
-        """ Goes through retrieved enhancements and adds them to the metadata.
-
-        For every enhancement we add a URI and a label to the matched term
-        in the enrichments block.
-
-        There is a limit of 3 enhancements added for a single term.
-        The metadata block contains fields for elsstVarUri1, elsstVarUri2,
-        and elsstVarUri3. The same goes for the labels.
-
-        :param enhancements: The enhancements for a specific term.
-        :param term_field: The term field that term is in.
-        """
-
-        max_enhancements = min(len(enhancements), MAX_ENHANCEMENTS)
-        for i in range(max_enhancements):
-            counter = i + 1
-            self.add_enhancement_uri(enhancements[i], counter, term_field)
-            self.add_enhancement_label(enhancements[i], counter, term_field)
-
-    def add_enhancement_uri(self, enhancement: dict, counter: int,
+    def add_enhancement_uri(self, uri: str, counter: int,
                             term_field: dict):
-        uri = _try_for_key(enhancement, 'iri.value')
         uri_type_name = f'elsstVarUri{counter}'
         self.add_enhancement_to_metadata_field(term_field, uri_type_name, uri)
 
-    def add_enhancement_label(self, enhancement: dict, counter: int,
+    def add_enhancement_label(self, label: str, counter: int,
                               term_field: dict):
-        label = _try_for_key(enhancement, 'lbl.value')
         label_type_name = f'elsstVarLabel{counter}'
         self.add_enhancement_to_metadata_field(term_field, label_type_name,
                                                label)
