@@ -1,314 +1,314 @@
 {
-  "datasetVersion": {
-    "datasetPersistentId": "doi:10.57934/0b01e4108071ea4c",
-    "license": {
-      "name": "CBS Licence",
-      "uri": "https://typeregistry.org/#objects/11314.3/DANS_MA_KA"
-    },
-    "metadataBlocks": {
-      "citation": {
-        "displayName": "Citation Metadata",
-        "name": "citation",
-        "fields": [
-          {
-            "typeName": "title",
-            "multiple": false,
-            "typeClass": "primitive",
-            "value": "Banen en lonen op basis van de Polisadministratie"
-          },
-          {
-            "typeName": "alternativeTitle",
-            "multiple": false,
-            "typeClass": "primitive",
-            "value": "SPOLISJJJJBUSVV"
-          },
-          {
-            "typeName": "otherId",
-            "multiple": true,
-            "typeClass": "compound",
-            "value": [
-              {
-                "otherIdAgency": {
-                  "typeName": "otherIdAgency",
-                  "multiple": false,
-                  "typeClass": "primitive",
-                  "value": "CBS Dataontwerp ID"
-                },
-                "otherIdValue": {
-                  "typeName": "otherIdValue",
-                  "multiple": false,
-                  "typeClass": "primitive",
-                  "value": "0b01e4108071ea4c"
-                }
-              }
-            ]
-          },
-          {
-            "typeName": "author",
-            "multiple": true,
-            "typeClass": "compound",
-            "value": [
-              {
-                "authorName": {
-                  "typeName": "authorName",
-                  "multiple": false,
-                  "typeClass": "primitive",
-                  "value": "Centraal Bureau voor Statistiek"
-                }
-              }
-            ]
-          },
-          {
-            "typeName": "datasetContact",
-            "multiple": true,
-            "typeClass": "compound",
-            "value": [
-              {
-                "datasetContactEmail": {
-                  "typeName": "datasetContactEmail",
-                  "multiple": false,
-                  "typeClass": "primitive",
-                  "value": "portal@odissei.nl"
-                }
-              }
-            ]
-          },
-          {
-            "typeName": "dsDescription",
-            "multiple": true,
-            "typeClass": "compound",
-            "value": [
-              {
-                "dsDescriptionValue": {
-                  "typeName": "dsDescriptionValue",
-                  "multiple": false,
-                  "typeClass": "primitive",
-                  "value": "In dit databestand zijn kwantitatieve en kwalitatieve gegevens opgenomen over banen en lonen van werknemers bij Nederlandse bedrijven over een bepaald verslagjaar of deel van een verslagjaar. De definitie van \"baan\" die ten grondslag ligt aan dit bestand is een inkomstenverhouding (IKVID) in verband met arbeid  van een werkgever met een persoon. Een persoon kan per werkgever  meerdere inkomstenverhoudingen tegelijkertijd hebben.Deze component, waarbij de sleutel voor een baan de inkomstenverhouding (IKVID) is, is beschikbaar vanaf verslagjaar 2010. De poliscomponent is ook beschikbaar voor de verslagjaren 2006 tot en met 2009: hierbij is de baansleutel BAANRUGID en is de naam van de component POLISJJJJBUSVV.Vanaf 2015 verschijnen er van deze component naast de versie met definitieve jaargegevens ook versies van cumulatieve voorlopige maandgegevens. In principe geldt dat alle versies van V011  tot en met V123 voorlopige gevens bevatten. Het laatste verslagmaand bevat dan telkens ook zeer voorlopige gegevens (zie ook gebruikte methodologie). Zie het historie-document van de component voor de actuele status van (maanden in) een bepaalde versie. LET OP: Houd bij het gebruik van de gegevens rekening met de actuele status van de cijfers.Voor meer info hierover zie Methodologie.De polisbestanden bevatten ook gegevens van buitenlandse werknemers die onder het Nederlandse belastingstelsel vallen en loonheffing moeten betalen.De Polisbestanden zijn  een opvolger van de Enquête Werkgelegeheid en Lonen (EWL). De EWL is een steekproef, de Polisbestanden zijn het resultaat van integrale waarneming. Door verschillen in methodiek zijn deze bestanden niet te vergelijken. Met ingang van verslagjaar 2010 is de methode van baanafbakening uit de Polisadministratie gewijzigd. Deze methodewijziging is doorgevoerd, omdat uit onderzoek is gebleken dat er ongeveer 1% van het totaal aantal banen niet meegenomen werd bij het selecteren van banen uit de brondata. De nieuwe methode neemt deze banen wel mee. Deze extra banen zijn in het algemeen evenwichtig verdeeld over de bedrijfstakken. Het overgrote deel van deze banen betreft banen zonder werknemersverzekeringen; ongeveer één derde zijn directeuren-grootaandeelhouders met een eigen bedrijf. Vanaf verslagjaar 2010 wordt de nieuwe baanpopulatie gebruikt.Vrijwilligers worden alleen in de Polis opgenomen als hun vergoeding boven de vrijstellingsnorm komt."
-                }
-              }
-            ]
-          },
-          {
-            "typeName": "subject",
-            "multiple": true,
-            "typeClass": "controlledVocabulary",
-            "value": [
-              "Social Sciences"
-            ]
-          },
-          {
-            "typeName": "keyword",
-            "multiple": true,
-            "typeClass": "compound",
-            "value": [
-              {
-                "keywordValue": {
-                  "typeName": "keywordValue",
-                  "multiple": false,
-                  "typeClass": "primitive",
-                  "value": "Werkgelegenheid"
-                }
-              }
-            ]
-          },
-          {
-            "typeName": "topicClassification",
-            "multiple": true,
-            "typeClass": "compound",
-            "value": [
-              {
-                "topicClassValue": {
-                  "typeName": "topicClassValue",
-                  "multiple": false,
-                  "typeClass": "primitive",
-                  "value": "Arbeid en sociale zekerheid"
-                }
-              }
-            ]
-          },
-          {
-            "typeName": "producer",
-            "multiple": true,
-            "typeClass": "compound",
-            "value": [
-              {
-                "producerName": {
-                  "typeName": "producerName",
-                  "multiple": false,
-                  "typeClass": "primitive",
-                  "value": "Centraal Bureau voor Statistiek"
-                },
-                "producerAbbreviation": {
-                  "typeName": "producerAbbreviation",
-                  "multiple": false,
-                  "typeClass": "primitive",
-                  "value": "CBS"
-                }
-              }
-            ]
-          },
-          {
-            "typeName": "distributor",
-            "multiple": true,
-            "typeClass": "compound",
-            "value": [
-              {
-                "distributorName": {
-                  "typeName": "distributorName",
-                  "multiple": false,
-                  "typeClass": "primitive",
-                  "value": "Centraal Bureau voor Statistiek"
-                }
-              }
-            ]
-          },
-          {
-            "typeName": "distributionDate",
-            "multiple": false,
-            "typeClass": "primitive",
-            "value": "2022-03-15"
-          },
-          {
-            "typeName": "kindOfData",
-            "multiple": true,
-            "typeClass": "primitive",
-            "value": [
-              "Micro"
-            ]
-          }
-        ]
+   "datasetVersion":{
+      "datasetPersistentId":"doi:10.57934/0b01e4108071ea4c",
+      "license":{
+         "name":"CBS Licence",
+         "uri":"https://typeregistry.org/#objects/11314.3/DANS_MA_KA"
       },
-      "socialscience": {
-        "displayName": "Social Science and Humanities Metadata",
-        "name": "socialscience",
-        "fields": [
-          {
-            "typeName": "universe",
-            "multiple": true,
-            "typeClass": "primitive",
-            "value": [
-              "Banen van werknemers in Nederland."
+      "metadataBlocks":{
+         "citation":{
+            "displayName":"Citation Metadata",
+            "name":"citation",
+            "fields":[
+               {
+                  "typeName":"title",
+                  "multiple":false,
+                  "typeClass":"primitive",
+                  "value":"Banen en lonen op basis van de Polisadministratie"
+               },
+               {
+                  "typeName":"alternativeTitle",
+                  "multiple":false,
+                  "typeClass":"primitive",
+                  "value":"SPOLISJJJJBUSVV"
+               },
+               {
+                  "typeName":"otherId",
+                  "multiple":true,
+                  "typeClass":"compound",
+                  "value":[
+                     {
+                        "otherIdAgency":{
+                           "typeName":"otherIdAgency",
+                           "multiple":false,
+                           "typeClass":"primitive",
+                           "value":"CBS Dataontwerp ID"
+                        },
+                        "otherIdValue":{
+                           "typeName":"otherIdValue",
+                           "multiple":false,
+                           "typeClass":"primitive",
+                           "value":"0b01e4108071ea4c"
+                        }
+                     }
+                  ]
+               },
+               {
+                  "typeName":"author",
+                  "multiple":true,
+                  "typeClass":"compound",
+                  "value":[
+                     {
+                        "authorName":{
+                           "typeName":"authorName",
+                           "multiple":false,
+                           "typeClass":"primitive",
+                           "value":"Centraal Bureau voor Statistiek"
+                        }
+                     }
+                  ]
+               },
+               {
+                  "typeName":"datasetContact",
+                  "multiple":true,
+                  "typeClass":"compound",
+                  "value":[
+                     {
+                        "datasetContactEmail":{
+                           "typeName":"datasetContactEmail",
+                           "multiple":false,
+                           "typeClass":"primitive",
+                           "value":"portal@odissei.nl"
+                        }
+                     }
+                  ]
+               },
+               {
+                  "typeName":"dsDescription",
+                  "multiple":true,
+                  "typeClass":"compound",
+                  "value":[
+                     {
+                        "dsDescriptionValue":{
+                           "typeName":"dsDescriptionValue",
+                           "multiple":false,
+                           "typeClass":"primitive",
+                           "value":"In dit databestand zijn kwantitatieve en kwalitatieve gegevens opgenomen over banen en lonen van werknemers bij Nederlandse bedrijven over een bepaald verslagjaar of deel van een verslagjaar. De definitie van \"baan\" die ten grondslag ligt aan dit bestand is een inkomstenverhouding (IKVID) in verband met arbeid  van een werkgever met een persoon. Een persoon kan per werkgever  meerdere inkomstenverhoudingen tegelijkertijd hebben.Deze component, waarbij de sleutel voor een baan de inkomstenverhouding (IKVID) is, is beschikbaar vanaf verslagjaar 2010. De poliscomponent is ook beschikbaar voor de verslagjaren 2006 tot en met 2009: hierbij is de baansleutel BAANRUGID en is de naam van de component POLISJJJJBUSVV.Vanaf 2015 verschijnen er van deze component naast de versie met definitieve jaargegevens ook versies van cumulatieve voorlopige maandgegevens. In principe geldt dat alle versies van V011  tot en met V123 voorlopige gevens bevatten. Het laatste verslagmaand bevat dan telkens ook zeer voorlopige gegevens (zie ook gebruikte methodologie). Zie het historie-document van de component voor de actuele status van (maanden in) een bepaalde versie. LET OP: Houd bij het gebruik van de gegevens rekening met de actuele status van de cijfers.Voor meer info hierover zie Methodologie.De polisbestanden bevatten ook gegevens van buitenlandse werknemers die onder het Nederlandse belastingstelsel vallen en loonheffing moeten betalen.De Polisbestanden zijn  een opvolger van de Enquête Werkgelegeheid en Lonen (EWL). De EWL is een steekproef, de Polisbestanden zijn het resultaat van integrale waarneming. Door verschillen in methodiek zijn deze bestanden niet te vergelijken. Met ingang van verslagjaar 2010 is de methode van baanafbakening uit de Polisadministratie gewijzigd. Deze methodewijziging is doorgevoerd, omdat uit onderzoek is gebleken dat er ongeveer 1% van het totaal aantal banen niet meegenomen werd bij het selecteren van banen uit de brondata. De nieuwe methode neemt deze banen wel mee. Deze extra banen zijn in het algemeen evenwichtig verdeeld over de bedrijfstakken. Het overgrote deel van deze banen betreft banen zonder werknemersverzekeringen; ongeveer één derde zijn directeuren-grootaandeelhouders met een eigen bedrijf. Vanaf verslagjaar 2010 wordt de nieuwe baanpopulatie gebruikt.Vrijwilligers worden alleen in de Polis opgenomen als hun vergoeding boven de vrijstellingsnorm komt."
+                        }
+                     }
+                  ]
+               },
+               {
+                  "typeName":"subject",
+                  "multiple":true,
+                  "typeClass":"controlledVocabulary",
+                  "value":[
+                     "Social Sciences"
+                  ]
+               },
+               {
+                  "typeName":"keyword",
+                  "multiple":true,
+                  "typeClass":"compound",
+                  "value":[
+                     {
+                        "keywordValue":{
+                           "typeName":"keywordValue",
+                           "multiple":false,
+                           "typeClass":"primitive",
+                           "value":"Werkgelegenheid"
+                        }
+                     }
+                  ]
+               },
+               {
+                  "typeName":"topicClassification",
+                  "multiple":true,
+                  "typeClass":"compound",
+                  "value":[
+                     {
+                        "topicClassValue":{
+                           "typeName":"topicClassValue",
+                           "multiple":false,
+                           "typeClass":"primitive",
+                           "value":"Arbeid en sociale zekerheid"
+                        }
+                     }
+                  ]
+               },
+               {
+                  "typeName":"producer",
+                  "multiple":true,
+                  "typeClass":"compound",
+                  "value":[
+                     {
+                        "producerName":{
+                           "typeName":"producerName",
+                           "multiple":false,
+                           "typeClass":"primitive",
+                           "value":"Centraal Bureau voor Statistiek"
+                        },
+                        "producerAbbreviation":{
+                           "typeName":"producerAbbreviation",
+                           "multiple":false,
+                           "typeClass":"primitive",
+                           "value":"CBS"
+                        }
+                     }
+                  ]
+               },
+               {
+                  "typeName":"distributor",
+                  "multiple":true,
+                  "typeClass":"compound",
+                  "value":[
+                     {
+                        "distributorName":{
+                           "typeName":"distributorName",
+                           "multiple":false,
+                           "typeClass":"primitive",
+                           "value":"Centraal Bureau voor Statistiek"
+                        }
+                     }
+                  ]
+               },
+               {
+                  "typeName":"distributionDate",
+                  "multiple":false,
+                  "typeClass":"primitive",
+                  "value":"2022-03-15"
+               },
+               {
+                  "typeName":"kindOfData",
+                  "multiple":true,
+                  "typeClass":"primitive",
+                  "value":[
+                     "Micro"
+                  ]
+               }
             ]
-          },
-          {
-            "typeName": "frequencyOfDataCollection",
-            "multiple": false,
-            "typeClass": "primitive",
-            "value": "Niet eenduidig"
-          },
-          {
-            "typeName": "samplingProcedure",
-            "multiple": false,
-            "typeClass": "primitive",
-            "value": "In de registratie van de Polisadministratie vallen alle inkomstenverhoudingen in Nederland die onder de loonheffing vallen, dus zowel lonen als uitkeringen en pensioenen. CBS filtert hieruit de banen, door te kijken naar de kenmerken en patroon van de opgaven. Zodoende blijven de records over die binnen de baandefinitie vallen. Dat is het geval als er een gezagsverhouding werkgever-werknemer is en er gedurende tenminste één uur per week betaalde arbeid wordt verricht. Omdat de records in de Polisadministratie meestal over een tijdvak van een maand of vier weken gaan, geldt voor de afbakening van banen dat binnen het tijdvak minstens 4 uur aan betaalde arbeid moet zijn verricht.De gegevens in dit bestand hebben betrekking op een kalenderjaar of een aantal cumulatieve maanden van een kalenderjaar. De opgaven per record (per inkomstenopgave) hebben betrekking op de periode tussen SDATUMAANVANGIKO en SDATUMEINDEIKO. Dit is de overlap tussen de verslagmaand en het aangiftetijdvak van het IKVID. Het aangiftetijdvak is meestal een maand of vier weken. Bij een aangiftetijdvak van een maand komt de periode van het record als de baan niet begint of eindigt overeen met het aangiftetijdvak. Bij een aangiftetijdvak van vier weken zijn er per maand vaak twee (soms drie) records per IKVID, omdat er in één maand meerdere aangiftetijdvakken van vier weken voorkomen.De algemene kwaliteit van de gegevens is als volgt aangegeven (zie hiervoor de standaard SSB-documentatie):B Bekeken op totaal of meso niveau,D Deels bekeken, gebruikt als hulpvariabelen om een andere variabele mee te corrigeren,N Niet bekeken, niet bewerkt en niet gebruikt.In de standaard SSB-documentatie van de SPOLIS-component is aangegeven welke kwaliteit voor welke variabele geldt in het betreffende jaar.Vanaf 2015 zijn er van deze component ook versies met cumulatieve maandbestanden met voorlopige gegevens. De meest recente maand in deze voorlopige maandbestanden heeft de status van zeer voorlopig (V1). De maand ervoor heeft de status voorlopig (V2) en de overige maanden de status nader voorlopig (V3). Als maanden de status nader voorlopig hebben, veranderen de gegevens niet meer tot de definitieve gegevens (V4) verschijnen. In de naamgeving van de bestanden wordt de versie van de laatste maand weergegeven. Dus SPOLIS2010BUSV101 bevat Polisdata van januari tot en met augustus 2010 van het jaar 2010 met status V3, data van september 2010 met status V2 en data van oktober 2010 met status V1.In het historie-document van de component staat meer informatie over actuele status van (maanden in) een bepaalde versie en over de kwantiteit van de ontbrekende gegevens van de verschillende versies. Houd hier rekening mee bij het gebruik van de gegevens. Daarnaast is in de SSB-standaarddocumentatie het verloop van de aantallen records per dag weergegeven.  Het Polisbestand wordt gecontroleerd op sbi-sectie-niveau. Bij publicatie op gedetailleerder niveau dient de gebruiker zelf de plausibiliteit per sbi-niveau te controleren.\nVanwege het voorlopige karakter is versie 1 minder bruikbaar voor de analyse van kleine, specifieke populaties."
-          },
-          {
-            "typeName": "socialScienceNotes",
-            "multiple": false,
-            "typeClass": "compound",
-            "value": {
-              "socialScienceNotesSubject": {
-                "typeName": "socialScienceNotesSubject",
-                "multiple": false,
-                "typeClass": "primitive",
-                "value": "De gegevens zijn afkomstig uit de Polisadministratie. De Polisadministratie is gebaseerd op de loonaangiften bij de Belastingdienst en omvat onder meer alle banen (inkomstenverhoudingen) van werknemers bij Nederlandse werkgevers."
-              }
-            }
-          }
-        ]
-      },
-      "variableInformation": {
-        "displayName": "Variable Information",
-        "name": "variableInformation",
-        "fields": [
-          {
-            "typeName": "variable",
-            "multiple": true,
-            "typeClass": "compound",
-            "value": [
-              {
-                "variableName": {
-                  "typeName": "variableName",
-                  "multiple": false,
-                  "typeClass": "primitive",
-                  "value": "RINPERSOONS"
-                },
-                "variableLabel": {
-                  "typeName": "variableLabel",
-                  "multiple": false,
-                  "typeClass": "primitive",
-                  "value": "Oorsprong RINPERSOON: codes geven status van koppeling met BRP"
-                },
-                "variableVocabularyURI": {
-                  "typeName": "variableVocabularyURI",
-                  "multiple": false,
-                  "typeClass": "primitive",
-                  "value": "https://portal.odissei-data.nl/data/cbs/variableThesaurus/c0319fa5d21632b8686b747ede7c6baca868dc0f9fb088a553d8525efc1696e42"
-                }
-              },
-              {
-                "variableName": {
-                  "typeName": "variableName",
-                  "multiple": false,
-                  "typeClass": "primitive",
-                  "value": "RINPERSOON"
-                },
-                "variableLabel": {
-                  "typeName": "variableLabel",
-                  "multiple": false,
-                  "typeClass": "primitive",
-                  "value": "Betekenis- en dimensieloos identificatienummer ter vervanging van het BSN"
-                },
-                "variableVocabularyURI": {
-                  "typeName": "variableVocabularyURI",
-                  "multiple": false,
-                  "typeClass": "primitive",
-                  "value": "https://portal.odissei-data.nl/data/cbs/variableThesaurus/c05335fa632d24349e7d8323a620b2f01c8ab996e830edfcfbf462efd69300382"
-                }
-              },
-              {
-                "variableName": {
-                  "typeName": "variableName",
-                  "multiple": false,
-                  "typeClass": "primitive",
-                  "value": "IKVID"
-                },
-                "variableLabel": {
-                  "typeName": "variableLabel",
-                  "multiple": false,
-                  "typeClass": "primitive",
-                  "value": "Door het UWV bepaalde identificatie van de inkomstenverhouding, door het CBS versleuteld"
-                },
-                "variableVocabularyURI": {
-                  "typeName": "variableVocabularyURI",
-                  "multiple": false,
-                  "typeClass": "primitive",
-                  "value": "https://portal.odissei-data.nl/data/cbs/variableThesaurus/c81db944f452b06317327df21eaf41011cab93bb2009b1e6843b636806432cc42"
-                }
-              }
+         },
+         "socialscience":{
+            "displayName":"Social Science and Humanities Metadata",
+            "name":"socialscience",
+            "fields":[
+               {
+                  "typeName":"universe",
+                  "multiple":true,
+                  "typeClass":"primitive",
+                  "value":[
+                     "Banen van werknemers in Nederland."
+                  ]
+               },
+               {
+                  "typeName":"frequencyOfDataCollection",
+                  "multiple":false,
+                  "typeClass":"primitive",
+                  "value":"Niet eenduidig"
+               },
+               {
+                  "typeName":"samplingProcedure",
+                  "multiple":false,
+                  "typeClass":"primitive",
+                  "value":"In de registratie van de Polisadministratie vallen alle inkomstenverhoudingen in Nederland die onder de loonheffing vallen, dus zowel lonen als uitkeringen en pensioenen. CBS filtert hieruit de banen, door te kijken naar de kenmerken en patroon van de opgaven. Zodoende blijven de records over die binnen de baandefinitie vallen. Dat is het geval als er een gezagsverhouding werkgever-werknemer is en er gedurende tenminste één uur per week betaalde arbeid wordt verricht. Omdat de records in de Polisadministratie meestal over een tijdvak van een maand of vier weken gaan, geldt voor de afbakening van banen dat binnen het tijdvak minstens 4 uur aan betaalde arbeid moet zijn verricht.De gegevens in dit bestand hebben betrekking op een kalenderjaar of een aantal cumulatieve maanden van een kalenderjaar. De opgaven per record (per inkomstenopgave) hebben betrekking op de periode tussen SDATUMAANVANGIKO en SDATUMEINDEIKO. Dit is de overlap tussen de verslagmaand en het aangiftetijdvak van het IKVID. Het aangiftetijdvak is meestal een maand of vier weken. Bij een aangiftetijdvak van een maand komt de periode van het record als de baan niet begint of eindigt overeen met het aangiftetijdvak. Bij een aangiftetijdvak van vier weken zijn er per maand vaak twee (soms drie) records per IKVID, omdat er in één maand meerdere aangiftetijdvakken van vier weken voorkomen.De algemene kwaliteit van de gegevens is als volgt aangegeven (zie hiervoor de standaard SSB-documentatie):B Bekeken op totaal of meso niveau,D Deels bekeken, gebruikt als hulpvariabelen om een andere variabele mee te corrigeren,N Niet bekeken, niet bewerkt en niet gebruikt.In de standaard SSB-documentatie van de SPOLIS-component is aangegeven welke kwaliteit voor welke variabele geldt in het betreffende jaar.Vanaf 2015 zijn er van deze component ook versies met cumulatieve maandbestanden met voorlopige gegevens. De meest recente maand in deze voorlopige maandbestanden heeft de status van zeer voorlopig (V1). De maand ervoor heeft de status voorlopig (V2) en de overige maanden de status nader voorlopig (V3). Als maanden de status nader voorlopig hebben, veranderen de gegevens niet meer tot de definitieve gegevens (V4) verschijnen. In de naamgeving van de bestanden wordt de versie van de laatste maand weergegeven. Dus SPOLIS2010BUSV101 bevat Polisdata van januari tot en met augustus 2010 van het jaar 2010 met status V3, data van september 2010 met status V2 en data van oktober 2010 met status V1.In het historie-document van de component staat meer informatie over actuele status van (maanden in) een bepaalde versie en over de kwantiteit van de ontbrekende gegevens van de verschillende versies. Houd hier rekening mee bij het gebruik van de gegevens. Daarnaast is in de SSB-standaarddocumentatie het verloop van de aantallen records per dag weergegeven.  Het Polisbestand wordt gecontroleerd op sbi-sectie-niveau. Bij publicatie op gedetailleerder niveau dient de gebruiker zelf de plausibiliteit per sbi-niveau te controleren.\nVanwege het voorlopige karakter is versie 1 minder bruikbaar voor de analyse van kleine, specifieke populaties."
+               },
+               {
+                  "typeName":"socialScienceNotes",
+                  "multiple":false,
+                  "typeClass":"compound",
+                  "value":{
+                     "socialScienceNotesSubject":{
+                        "typeName":"socialScienceNotesSubject",
+                        "multiple":false,
+                        "typeClass":"primitive",
+                        "value":"De gegevens zijn afkomstig uit de Polisadministratie. De Polisadministratie is gebaseerd op de loonaangiften bij de Belastingdienst en omvat onder meer alle banen (inkomstenverhoudingen) van werknemers bij Nederlandse werkgevers."
+                     }
+                  }
+               }
             ]
-          }
-        ]
-      },
-      "provenance": {
-        "displayName": "Provenance Metadata",
-        "name": "provenance",
-        "fields": [
-          {
-            "typeName": "workflow",
-            "multiple": false,
-            "typeClass": "compound",
-            "value": {
-              "workflowURI": {
-                "typeName": "workflowURI",
-                "multiple": false,
-                "typeClass": "primitive",
-                "value": "https://version-tracker.labs.dans.knaw.nl/retrieve/63d948fad5311c7ccaee7546"
-              }
-            }
-          }
-        ]
+         },
+         "variableInformation":{
+            "displayName":"Variable Information",
+            "name":"variableInformation",
+            "fields":[
+               {
+                  "typeName":"variable",
+                  "multiple":true,
+                  "typeClass":"compound",
+                  "value":[
+                     {
+                        "variableName":{
+                           "typeName":"variableName",
+                           "multiple":false,
+                           "typeClass":"primitive",
+                           "value":"RINPERSOONS"
+                        },
+                        "variableLabel":{
+                           "typeName":"variableLabel",
+                           "multiple":false,
+                           "typeClass":"primitive",
+                           "value":"Oorsprong RINPERSOON: codes geven status van koppeling met BRP"
+                        },
+                        "variableVocabularyURI":{
+                           "typeName":"variableVocabularyURI",
+                           "multiple":false,
+                           "typeClass":"primitive",
+                           "value":"https://portal.odissei-data.nl/data/cbs/variableThesaurus/ced5e585d2551b8ac1d96b774502c38e7b8d50e4edc2105c6903fab78a45495a6"
+                        }
+                     },
+                     {
+                        "variableName":{
+                           "typeName":"variableName",
+                           "multiple":false,
+                           "typeClass":"primitive",
+                           "value":"RINPERSOON"
+                        },
+                        "variableLabel":{
+                           "typeName":"variableLabel",
+                           "multiple":false,
+                           "typeClass":"primitive",
+                           "value":"Betekenis- en dimensieloos identificatienummer ter vervanging van het BSN"
+                        },
+                        "variableVocabularyURI":{
+                           "typeName":"variableVocabularyURI",
+                           "multiple":false,
+                           "typeClass":"primitive",
+                           "value":"https://portal.odissei-data.nl/data/cbs/variableThesaurus/cf0133339b23e5a5f737995ca64af06f98f14b8c5c827e8149f10b02934e07860"
+                        }
+                     },
+                     {
+                        "variableName":{
+                           "typeName":"variableName",
+                           "multiple":false,
+                           "typeClass":"primitive",
+                           "value":"IKVID"
+                        },
+                        "variableLabel":{
+                           "typeName":"variableLabel",
+                           "multiple":false,
+                           "typeClass":"primitive",
+                           "value":"Door het UWV bepaalde identificatie van de inkomstenverhouding, door het CBS versleuteld"
+                        },
+                        "variableVocabularyURI":{
+                           "typeName":"variableVocabularyURI",
+                           "multiple":false,
+                           "typeClass":"primitive",
+                           "value":"https://portal.odissei-data.nl/data/cbs/variableThesaurus/c8994721cc5a8b1e1268d811634200daa8381bfe2b7659f1ecebe664bf488208c"
+                        }
+                     }
+                  ]
+               }
+            ]
+         },
+         "provenance":{
+            "displayName":"Provenance Metadata",
+            "name":"provenance",
+            "fields":[
+               {
+                  "typeName":"workflow",
+                  "multiple":false,
+                  "typeClass":"compound",
+                  "value":{
+                     "workflowURI":{
+                        "typeName":"workflowURI",
+                        "multiple":false,
+                        "typeClass":"primitive",
+                        "value":"https://version-tracker.labs.dans.knaw.nl/retrieve/63d948fad5311c7ccaee7546"
+                     }
+                  }
+               }
+            ]
+         }
       }
-    }
-  }
+   }
 }

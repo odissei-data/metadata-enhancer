@@ -1,9 +1,8 @@
 import json
-from unittest.mock import patch, AsyncMock
-
 import pytest
 from cachetools import TTLCache
 from fastapi import HTTPException
+
 from ..enhancers import ELSSTEnhancer, VariableEnhancer
 
 cache = TTLCache(maxsize=1024, ttl=12000)
@@ -12,6 +11,16 @@ cache = TTLCache(maxsize=1024, ttl=12000)
 def open_json_file(json_path):
     with open(json_path) as f:
         return json.load(f)
+
+
+@pytest.fixture()
+def elsst_table():
+    return open_json_file("test-data/table-data/elsst_table.json")
+
+
+@pytest.fixture()
+def cbs_table():
+    return open_json_file("test-data/table-data/cbs_table.json")
 
 
 @pytest.fixture()
@@ -30,22 +39,18 @@ def cbs_variable_output():
 
 
 @pytest.fixture()
-def ELSST_enhancer(cbs_metadata):
+def ELSST_enhancer(cbs_metadata, elsst_table):
     return ELSSTEnhancer(
         cbs_metadata,
-        'https://grlc.odissei.nl/api-git/odissei-data/grlc/'
-        'matchElsstTermForKeyword',
-        'https://fuseki.dev.odissei.nl/skosmos/sparql'
+        elsst_table
     )
 
 
 @pytest.fixture()
-def variable_enhancer(cbs_metadata):
+def variable_enhancer(cbs_metadata, cbs_table):
     return VariableEnhancer(
         cbs_metadata,
-        'https://grlc.odissei.nl/api-git/odissei-data/grlc/getCbsVarUri',
-        'https://fuseki.dev.odissei.nl/skosmos/sparql',
-        cache
+        cbs_table
     )
 
 
@@ -55,28 +60,14 @@ def test_e2e_ELSST_enhancer(ELSST_enhancer, cbs_keyword_output):
     assert ELSST_enhancer.metadata == cbs_keyword_output
 
 
-@pytest.mark.asyncio
-async def test_e2e_variable_enhancer(variable_enhancer, cbs_metadata,
-                                     cbs_variable_output):
+def test_e2e_variable_enhancer(variable_enhancer, cbs_metadata,
+                               cbs_variable_output):
     # Application test of the variable enhancer
 
-    await variable_enhancer.enhance_metadata()
+    variable_enhancer.enhance_metadata()
+    print(variable_enhancer.metadata)
+    print(f"ikvid: {variable_enhancer.enrichment_table['IKVID']}")
     assert variable_enhancer.metadata == cbs_variable_output
-
-    # Test enhancing with cache
-    http_client_mock = AsyncMock()
-    variable_enhancer_cached = VariableEnhancer(
-        cbs_metadata,
-        'https://grlc.odissei.nl/api-git/odissei-data/grlc/getCbsVarUri',
-        'https://fuseki.dev.odissei.nl/skosmos/sparql',
-        cache
-    )
-
-    with patch('httpx.AsyncClient', return_value=http_client_mock):
-        await variable_enhancer_cached.enhance_metadata()
-
-    assert variable_enhancer_cached.metadata == cbs_variable_output
-    http_client_mock.get.assert_not_called()
 
 
 def test_get_value_cbs_from_metadata(variable_enhancer, cbs_metadata):
@@ -91,34 +82,18 @@ def test_get_value_cbs_from_metadata(variable_enhancer, cbs_metadata):
         variable_enhancer.get_value_from_metadata('nonexistent_field',
                                                   'variableInformation')
 
-
-def test_query_enhancements(variable_enhancer):
-    # Test querying for a term that exists in the SPARQL endpoint
-    enhancements_dict = variable_enhancer.query_enhancements('RINPERSOON')
-    assert isinstance(enhancements_dict, dict)
-    assert 'results' in enhancements_dict
-    assert 'bindings' in enhancements_dict['results']
-    assert len(enhancements_dict['results']['bindings']) > 0
-
-    # Test querying for a term that does not exist in the SPARQL endpoint
-    enhancements_dict = variable_enhancer.query_enhancements(
-        'nonexistent_enhancement')
-    assert isinstance(enhancements_dict, dict)
-    assert 'results' in enhancements_dict
-    assert 'bindings' in enhancements_dict['results']
-    assert len(enhancements_dict['results']['bindings']) == 0
-
-# def test_add_terms_to_metadata(variable_enhancer):
-#     # Test adding terms to a variable metadata field
-#     terms = [
-#         {
-#             "label": {"type": "literal", "value": "GDP"},
-#             "iri": {"type": "uri",
-#                     "value": "http://www.europeandataportal.eu/skos/eurovoc/concept_scheme/100196"},
-#         },
-#         {
-#             "label": {"type": "literal", "value": "Gross Domestic Product"},
-#             "iri": {"type": "uri",
-#                     "value": "http://www.europeandataportal.eu/skos/eurovoc/concept_scheme/100196"},
-#         }
-#     ]
+# def test_query_enhancements(variable_enhancer):
+#     # Test querying for a term that exists in the SPARQL endpoint
+#     enhancements_dict = variable_enhancer.query_enhancements('RINPERSOON')
+#     assert isinstance(enhancements_dict, dict)
+#     assert 'results' in enhancements_dict
+#     assert 'bindings' in enhancements_dict['results']
+#     assert len(enhancements_dict['results']['bindings']) > 0
+#
+#     # Test querying for a term that does not exist in the SPARQL endpoint
+#     enhancements_dict = variable_enhancer.query_enhancements(
+#         'nonexistent_enhancement')
+#     assert isinstance(enhancements_dict, dict)
+#     assert 'results' in enhancements_dict
+#     assert 'bindings' in enhancements_dict['results']
+#     assert len(enhancements_dict['results']['bindings']) == 0
