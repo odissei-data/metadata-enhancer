@@ -65,8 +65,6 @@ def test_e2e_variable_enhancer(variable_enhancer, cbs_metadata,
     # Application test of the variable enhancer
 
     variable_enhancer.enhance_metadata()
-    print(variable_enhancer.metadata)
-    print(f"ikvid: {variable_enhancer.enrichment_table['IKVID']}")
     assert variable_enhancer.metadata == cbs_variable_output
 
 
