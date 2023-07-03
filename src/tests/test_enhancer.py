@@ -80,18 +80,15 @@ def test_get_value_cbs_from_metadata(variable_enhancer, cbs_metadata):
         variable_enhancer.get_value_from_metadata('nonexistent_field',
                                                   'variableInformation')
 
-# def test_query_enhancements(variable_enhancer):
-#     # Test querying for a term that exists in the SPARQL endpoint
-#     enhancements_dict = variable_enhancer.query_enhancements('RINPERSOON')
-#     assert isinstance(enhancements_dict, dict)
-#     assert 'results' in enhancements_dict
-#     assert 'bindings' in enhancements_dict['results']
-#     assert len(enhancements_dict['results']['bindings']) > 0
-#
-#     # Test querying for a term that does not exist in the SPARQL endpoint
-#     enhancements_dict = variable_enhancer.query_enhancements(
-#         'nonexistent_enhancement')
-#     assert isinstance(enhancements_dict, dict)
-#     assert 'results' in enhancements_dict
-#     assert 'bindings' in enhancements_dict['results']
-#     assert len(enhancements_dict['results']['bindings']) == 0
+
+def test_query_enhancements(variable_enhancer):
+    # Test querying for a term that exists in the SPARQL endpoint
+    enrichment = variable_enhancer.query_enrichment_table('RINPERSOON')
+    assert enrichment == "https://portal.odissei-data.nl/data/cbs/" \
+                         "variableThesaurus/cf0133339b23e5a5f73799" \
+                         "5ca64af06f98f14b8c5c827e8149f10b02934e07860"
+
+    # Test querying for a term that does not exist in the SPARQL endpoint
+    enrichment = variable_enhancer.query_enrichment_table(
+        'nonexistent_enhancement')
+    assert enrichment is None
