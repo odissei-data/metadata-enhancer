@@ -34,7 +34,7 @@ jobs:
       - name: Run Pytest
         run: |
           cd src/
-          pytest
+          python -m pytest
     push:
       name: Push to registry.
       runs-on: ubuntu-latest

@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "metadata-enhancer"
-version = "1.1.2"
-description = "A project allowing one to set up a FastAPI based Microservice, using cookiecutter"
+version = "2.0.0"
+description = "A service that enriches metadata using controlled vocabularies."
 authors = ["Fjodor van Rijsselberg"]
 include = ["src"]
 
@@ -17,6 +17,8 @@ jmespath = "^1.0.1"
 httpx = "^0.23.3"
 pytest-asyncio = "^0.21.0"
 cachetools = "^5.3.0"
+rdflib = "^6.3.2"
+sparqlwrapper = "^2.0.0"
 
 [tool.poetry.dev-dependencies]
 ipython = "^8.5.0"
