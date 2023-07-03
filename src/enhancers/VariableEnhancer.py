@@ -1,5 +1,5 @@
 from .MetadataEnhancer import MetadataEnhancer
-from .utils import _try_for_key
+from utils import _try_for_key
 
 
 class VariableEnhancer(MetadataEnhancer):

@@ -4,7 +4,7 @@ from fastapi import FastAPI
 
 from enhancers.ELSSTEnhancer import ELSSTEnhancer
 from enhancers.VariableEnhancer import VariableEnhancer
-from enhancers.queries import create_table_terms, CBS_VOCAB_QUERY, \
+from queries import create_table_terms, CBS_VOCAB_QUERY, \
     ELSST_VOCAB_QUERY
 from schema.input import EnhancerInput
 from version import get_version
