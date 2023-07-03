@@ -32,7 +32,7 @@ WHERE {
 
 
 def create_table_terms(sparql_endpoint, query):
-    """ Creates a dict from vocab with label: uri as the key value.
+    """ Creates a dict from a vocab with 'label: uri' as the key/value pair.
 
     TODO: Think about possibility of multiple uri's being returned.
     :param sparql_endpoint: The endpoint that can be queries with sparql.

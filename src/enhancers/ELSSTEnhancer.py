@@ -1,8 +1,9 @@
 from .utils import _try_for_key
 from .MetadataEnhancer import MetadataEnhancer
 
+
 class ELSSTEnhancer(MetadataEnhancer):
-    """ This class can be used to enhance terms with ELSST in DV metadata. """
+    """ This class can be used to enrich terms with ELSST in DV metadata. """
 
     def __init__(self, metadata: dict, enrichment_table: dict):
         """
@@ -22,8 +23,8 @@ class ELSSTEnhancer(MetadataEnhancer):
         """ Handles the metadata enhancement of terms using ELSST matches.
 
         First a list of terms in the give compound in the given metadata block
-        is retrieved. Then for all terms we match a term using the grlc API.
-        Finally, the terms are added to the enrichments metadata block.
+        is retrieved. Then for all terms we match a term using the enrichment
+        table. Finally, the terms are added to the enrichments metadata block.
 
         :param metadata_block: Contains compound field with matchable terms.
         :param compound_field: Contains the field that holds matchable terms.

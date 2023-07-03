@@ -11,7 +11,7 @@ class VariableEnhancer(MetadataEnhancer):
         """ enhance_metadata implementation for the variable enhancements.
 
         First the variables in the variableInformation metadata block are
-        retrieved. Then for all variables we find enhancements using an API.
+        retrieved. Then for all variables we find enhancements using a table.
         We add all the retrieved enhancements to the cache with the var as key.
         Finally, we add the enhancements to the metadata.
         """
