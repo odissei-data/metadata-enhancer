@@ -25,6 +25,7 @@ class MetadataEnhancer:
             metadata,
             'datasetVersion.metadataBlocks',
         )
+        self.enrichment_block = []
 
     @property
     def metadata(self):
@@ -71,9 +72,9 @@ class MetadataEnhancer:
                                      field_dict: dict):
         pass
 
-    def add_enhancement_to_metadata_field(self, metadata_field: dict,
-                                          type_name: str, value: str):
-        """ Adds a matched enhancement to a specific metadata field.
+    def add_enhancement_to_compound_metadata_field(self, metadata_field: dict,
+                                                   type_name: str, value: str):
+        """ Adds a matched enhancement to a specific compound metadata field.
 
         :param metadata_field: The metadata field to add the enhancement to.
         :param type_name: The type name of the enhancement added to the field.
@@ -85,3 +86,30 @@ class MetadataEnhancer:
             "typeClass": "primitive",
             "value": value
         }
+
+    def add_enhancement_to_primitive_metadata_field(self, type_name: str,
+                                                    value: str):
+        self.enrichment_block.append(
+            {
+                "typeName": type_name,
+                "multiple": False,
+                "typeClass": "primitive",
+                "value": value
+            }
+        )
+
+    def create_metadata_block(self, block_name, display_name) -> list:
+        """ Creates the enrichment custom metadata block """
+
+        # Check if the metadata block already exists, if so return it.
+        if block_name in self.metadata_blocks.keys():
+            return self.metadata_blocks[block_name]
+
+        self.metadata_blocks[block_name] = {
+            "displayName": display_name,
+            "name": block_name,
+            "fields": [
+            ]
+        }
+
+        return self.metadata_blocks[block_name]["fields"]
