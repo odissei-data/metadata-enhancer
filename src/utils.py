@@ -1,6 +1,8 @@
 import asyncio
+import csv
 
 import jmespath
+import requests
 from fastapi import HTTPException
 from jmespath.exceptions import JMESPathError
 
@@ -23,3 +25,18 @@ async def gather_with_concurrency(n, *coros):
             return await coro
 
     return await asyncio.gather(*(sem_coro(c) for c in coros))
+
+
+def load_tsv_from_github_raw(url):
+    response = requests.get(url)
+    lines = response.text.strip().split('\n')
+    reader = csv.reader(lines, delimiter='\t')
+    next(reader)  # Skip the header row
+    data_dict = {}
+    for row in reader:
+        row = [item.strip() for item in row if item.strip()]
+        if len(row) >= 5:
+            key = row[0]
+            value = row[-1]
+            data_dict[key] = value
+    return data_dict
