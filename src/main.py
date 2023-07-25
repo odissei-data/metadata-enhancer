@@ -13,6 +13,7 @@ from version import get_version
 
 app = FastAPI()
 
+GITHUB_RAW_URL = os.environ['GITHUB_RAW_URL']
 ELSST_VOCABULARY_URL = os.environ['ELSST_VOCABULARY_URL']
 VARIABLE_VOCABULARY_URL = os.environ['VARIABLE_VOCABULARY_URL']
 
@@ -50,9 +51,9 @@ async def dataverse_metadata_enhancer(enhancer_input: EnhancerInput) -> dict:
 @app.post('/dataverse-frequency-enhancer',
           tags=['Dataverse frequency enhancer'])
 async def dataverse_frequency_enhancer(enhancer_input: EnhancerInput) -> dict:
-    frequency_table = utils.load_tsv_from_github_raw(
-        os.environ['GITHUB_RAW_URL']
-    )
+
+    frequency_table = utils.load_tsv_from_github_raw(GITHUB_RAW_URL)
+
     frequency_enhancer = FrequencyEnhancer(
         enhancer_input.metadata,
         frequency_table
