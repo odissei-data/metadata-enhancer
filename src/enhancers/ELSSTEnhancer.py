@@ -14,6 +14,7 @@ class ELSSTEnhancer(MetadataEnhancer):
             "enrichments",
             "Enriched Metadata"
         )
+        self.added_terms_set = set()
 
     def enhance_metadata(self):
         """ enhance_metadata implementation for the term enhancements. """
@@ -37,6 +38,9 @@ class ELSSTEnhancer(MetadataEnhancer):
                                                        metadata_block)
         for term_dict in matchable_terms:
             term = _try_for_key(term_dict, f'{field}.value')
+            if term in self.added_terms_set:
+                break
+
             elsst_term = self.create_elsst_term(term)
             label = term.upper()
             uri = self.query_enrichment_table(label)
@@ -44,6 +48,7 @@ class ELSSTEnhancer(MetadataEnhancer):
                 self.add_enhancement_uri(uri, 1, elsst_term)
                 self.add_enhancement_label(label, 1, elsst_term)
                 self.add_matched_term(elsst_term)
+                self.added_terms_set.add(term)
 
     def add_enhancement_uri(self, uri: str, counter: int,
                             term_field: dict):
