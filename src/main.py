@@ -19,7 +19,7 @@ VARIABLE_VOCABULARY_URL = os.environ['VARIABLE_VOCABULARY_URL']
 
 CBS_table = create_table_terms(VARIABLE_VOCABULARY_URL, CBS_VOCAB_QUERY)
 ELSST_table = create_table_terms(ELSST_VOCABULARY_URL, ELSST_VOCAB_QUERY)
-
+frequency_table = utils.load_tsv_from_github_raw(GITHUB_RAW_URL)
 
 @app.get("/version", tags=["Version"])
 async def info():
@@ -51,8 +51,6 @@ async def dataverse_metadata_enhancer(enhancer_input: EnhancerInput) -> dict:
 @app.post('/dataverse-frequency-enhancer',
           tags=['Dataverse frequency enhancer'])
 async def dataverse_frequency_enhancer(enhancer_input: EnhancerInput) -> dict:
-
-    frequency_table = utils.load_tsv_from_github_raw(GITHUB_RAW_URL)
 
     frequency_enhancer = FrequencyEnhancer(
         enhancer_input.metadata,
