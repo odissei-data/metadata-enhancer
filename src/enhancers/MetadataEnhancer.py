@@ -103,7 +103,7 @@ class MetadataEnhancer:
 
         # Check if the metadata block already exists, if so return it.
         if block_name in self.metadata_blocks.keys():
-            return self.metadata_blocks[block_name]
+            return self.metadata_blocks[block_name]["fields"]
 
         self.metadata_blocks[block_name] = {
             "displayName": display_name,
