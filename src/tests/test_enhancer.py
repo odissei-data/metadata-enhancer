@@ -1,13 +1,10 @@
 import json
 import pytest
-from cachetools import TTLCache
 from fastapi import HTTPException
 
 from enhancers.ELSSTEnhancer import ELSSTEnhancer
 from enhancers.FrequencyEnhancer import FrequencyEnhancer
 from enhancers.VariableEnhancer import VariableEnhancer
-
-cache = TTLCache(maxsize=1024, ttl=12000)
 
 
 def open_json_file(json_path):
