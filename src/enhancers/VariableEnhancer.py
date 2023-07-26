@@ -36,6 +36,6 @@ class VariableEnhancer(MetadataEnhancer):
         :param variable_dict: The variable field to add the enhancements to.
         """
         variable_type_name = 'variableVocabularyURI'
-        self.add_enhancement_to_metadata_field(variable_dict,
-                                               variable_type_name,
-                                               variable_uri)
+        self.add_enhancement_to_compound_metadata_field(variable_dict,
+                                                        variable_type_name,
+                                                        variable_uri)

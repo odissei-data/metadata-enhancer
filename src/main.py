@@ -2,6 +2,8 @@ import os
 
 from fastapi import FastAPI
 
+import utils
+from enhancers.FrequencyEnhancer import FrequencyEnhancer
 from enhancers.ELSSTEnhancer import ELSSTEnhancer
 from enhancers.VariableEnhancer import VariableEnhancer
 from queries import create_table_terms, CBS_VOCAB_QUERY, \
@@ -11,12 +13,13 @@ from version import get_version
 
 app = FastAPI()
 
+GITHUB_RAW_URL = os.environ['GITHUB_RAW_URL']
 ELSST_VOCABULARY_URL = os.environ['ELSST_VOCABULARY_URL']
 VARIABLE_VOCABULARY_URL = os.environ['VARIABLE_VOCABULARY_URL']
 
 CBS_table = create_table_terms(VARIABLE_VOCABULARY_URL, CBS_VOCAB_QUERY)
 ELSST_table = create_table_terms(ELSST_VOCABULARY_URL, ELSST_VOCAB_QUERY)
-
+frequency_table = utils.load_tsv_from_github_raw(GITHUB_RAW_URL)
 
 @app.get("/version", tags=["Version"])
 async def info():
@@ -35,7 +38,7 @@ async def dataverse_ELSST_enhancer(
     return ELSST_enhancer.metadata
 
 
-@app.post('/dataverse-variable-enhancer', tags=['Dataverse metadata enhancer'])
+@app.post('/dataverse-variable-enhancer', tags=['Dataverse variable enhancer'])
 async def dataverse_metadata_enhancer(enhancer_input: EnhancerInput) -> dict:
     variable_enhancer = VariableEnhancer(
         enhancer_input.metadata,
@@ -43,3 +46,15 @@ async def dataverse_metadata_enhancer(enhancer_input: EnhancerInput) -> dict:
     )
     variable_enhancer.enhance_metadata()
     return variable_enhancer.metadata
+
+
+@app.post('/dataverse-frequency-enhancer',
+          tags=['Dataverse frequency enhancer'])
+async def dataverse_frequency_enhancer(enhancer_input: EnhancerInput) -> dict:
+
+    frequency_enhancer = FrequencyEnhancer(
+        enhancer_input.metadata,
+        frequency_table
+    )
+    frequency_enhancer.enhance_metadata()
+    return frequency_enhancer.metadata

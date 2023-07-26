@@ -10,7 +10,11 @@ class ELSSTEnhancer(MetadataEnhancer):
         The enrichments metadata block is created to add the enhancements to.
         """
         super().__init__(metadata, enrichment_table)
-        self.enrichment_block = self.create_enrichment_block()
+        self.enrichment_block = self.create_metadata_block(
+            "enrichments",
+            "Enriched Metadata"
+        )
+        self.added_terms_set = set()
 
     def enhance_metadata(self):
         """ enhance_metadata implementation for the term enhancements. """
@@ -34,6 +38,9 @@ class ELSSTEnhancer(MetadataEnhancer):
                                                        metadata_block)
         for term_dict in matchable_terms:
             term = _try_for_key(term_dict, f'{field}.value')
+            if term in self.added_terms_set:
+                break
+
             elsst_term = self.create_elsst_term(term)
             label = term.upper()
             uri = self.query_enrichment_table(label)
@@ -41,27 +48,20 @@ class ELSSTEnhancer(MetadataEnhancer):
                 self.add_enhancement_uri(uri, 1, elsst_term)
                 self.add_enhancement_label(label, 1, elsst_term)
                 self.add_matched_term(elsst_term)
+                self.added_terms_set.add(term)
 
     def add_enhancement_uri(self, uri: str, counter: int,
                             term_field: dict):
         uri_type_name = f'elsstVarUri{counter}'
-        self.add_enhancement_to_metadata_field(term_field, uri_type_name, uri)
+        self.add_enhancement_to_compound_metadata_field(term_field,
+                                                        uri_type_name, uri)
 
     def add_enhancement_label(self, label: str, counter: int,
                               term_field: dict):
         label_type_name = f'elsstVarLabel{counter}'
-        self.add_enhancement_to_metadata_field(term_field, label_type_name,
-                                               label)
-
-    def create_enrichment_block(self) -> list:
-        """ Creates the enrichment custom metadata block """
-        self.metadata_blocks["enrichments"] = {
-            "displayName": "Enriched Metadata",
-            "name": "enrichments",
-            "fields": [
-            ]
-        }
-        return self.metadata_blocks["enrichments"]["fields"]
+        self.add_enhancement_to_compound_metadata_field(term_field,
+                                                        label_type_name,
+                                                        label)
 
     def create_elsst_term(self, term: str) -> dict:
         """ Creates an elsst term field dict for a given term.

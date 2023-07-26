@@ -2,13 +2,9 @@
 CONTAINER_NAME=metadata-enhancer
 PORT=7070
 APPLICATION_DIR=src
-PYTHONPATH: "/root/src/"
 
 # URL'S
-KEYWORD_VOCABULARY_URL='https://fuseki.odissei.nl/skosmos/sparql'
-VARIABLE_VOCABULARY_URL='https://fuseki.odissei.nl/skosmos/sparql'
-ROOT_API_URL='https://grlc.odissei.nl/api-git/odissei-data/grlc/'
+ELSST_VOCABULARY_URL='https://fuseki.dev.odissei.nl/skosmos/sparql'
+VARIABLE_VOCABULARY_URL='https://fuseki.dev.odissei.nl/skosmos/sparql'
+GITHUB_RAW_URL="https://raw.githubusercontent.com/Dans-labs/semantic-enrichment/master/static/alle-beschikbare-catalogus-bestanden.tsv"
 
-# Endpoints
-KEYWORD_ENDPOINT='matchElsstTermForKeyword'
-VARIABLE_ENDPOINT='getCbsVarUri'
