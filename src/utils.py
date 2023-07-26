@@ -28,6 +28,13 @@ async def gather_with_concurrency(n, *coros):
 
 
 def load_tsv_from_github_raw(url):
+    """ Loads a table from a tsv file fetched using a GitHub raw url.
+    TODO: Right now the first column of the tsv file is empty.
+        The code reflects this, but to be used universally the table
+        and this code should be fixed to expect a first column.
+    :param url: The GitHub raw url.
+    :return: a dict with the dsc title as key and frequency of use as value.
+    """
     response = requests.get(url)
     lines = response.text.strip().split('\n')
     reader = csv.reader(lines, delimiter='\t')
