@@ -10,6 +10,12 @@ class FrequencyEnhancer(MetadataEnhancer):
         )
 
     def enhance_metadata(self):
+        """ Enhances metadata with the frequency of use data.
+
+        The frequency table contains alternative titles as keys and the
+        frequency of use as the value. If a match is found the frequency
+        of use is added to the enrichments metadata block.
+        """
         alternative_title = self.get_value_from_metadata(
             metadata_field_name='alternativeTitle',
             metadata_block='citation'

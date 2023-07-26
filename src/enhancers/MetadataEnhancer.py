@@ -89,6 +89,11 @@ class MetadataEnhancer:
 
     def add_enhancement_to_primitive_metadata_field(self, type_name: str,
                                                     value: str):
+        """ Add a matched enhancement to a primitive metadata field.
+
+        :param type_name: The type name used in dataverse metadata.
+        :param value: The value of the enhancement added to the field.
+        """
         self.enrichment_block.append(
             {
                 "typeName": type_name,
