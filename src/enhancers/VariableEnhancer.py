@@ -15,11 +15,11 @@ class VariableEnhancer(MetadataEnhancer):
         We add all the retrieved enhancements to the cache with the var as key.
         Finally, we add the enhancements to the metadata.
         """
-        variables = self.get_value_from_metadata('variable',
+        variables = self.get_value_from_metadata('odisseiVariable',
                                                  'variableInformation')
         for variable_dict in variables:
             variable = _try_for_key(variable_dict,
-                                    'variableName.value')
+                                    'odisseiVariableName.value')
             variable_uri = self.query_enrichment_table(variable)
             if variable_uri:
                 self.add_enhancements_to_metadata(variable_uri, variable_dict)
@@ -35,7 +35,7 @@ class VariableEnhancer(MetadataEnhancer):
         :param variable_uri: Enhancements to add to the metadata.
         :param variable_dict: The variable field to add the enhancements to.
         """
-        variable_type_name = 'variableVocabularyURI'
+        variable_type_name = 'odisseiVariableVocabularyURI'
         self.add_enhancement_to_compound_metadata_field(variable_dict,
                                                         variable_type_name,
                                                         variable_uri)
