@@ -222,65 +222,65 @@
             "name":"variableInformation",
             "fields":[
                {
-                  "typeName":"variable",
+                  "typeName":"odisseiVariable",
                   "multiple":true,
                   "typeClass":"compound",
                   "value":[
                      {
-                        "variableName":{
-                           "typeName":"variableName",
+                        "odisseiVariableName":{
+                           "typeName":"odisseiVariableName",
                            "multiple":false,
                            "typeClass":"primitive",
                            "value":"RINPERSOONS"
                         },
-                        "variableLabel":{
-                           "typeName":"variableLabel",
+                        "odisseiVariableLabel":{
+                           "typeName":"odisseiVariableLabel",
                            "multiple":false,
                            "typeClass":"primitive",
                            "value":"Oorsprong RINPERSOON: codes geven status van koppeling met BRP"
                         },
-                        "variableVocabularyURI":{
-                           "typeName":"variableVocabularyURI",
+                        "odisseiVariableVocabularyURI":{
+                           "typeName":"odisseiVariableVocabularyURI",
                            "multiple":false,
                            "typeClass":"primitive",
                            "value":"https://portal.odissei-data.nl/data/cbs/variableThesaurus/ced5e585d2551b8ac1d96b774502c38e7b8d50e4edc2105c6903fab78a45495a6"
                         }
                      },
                      {
-                        "variableName":{
-                           "typeName":"variableName",
+                        "odisseiVariableName":{
+                           "typeName":"odisseiVariableName",
                            "multiple":false,
                            "typeClass":"primitive",
                            "value":"RINPERSOON"
                         },
-                        "variableLabel":{
-                           "typeName":"variableLabel",
+                        "odisseiVariableLabel":{
+                           "typeName":"odisseiVariableLabel",
                            "multiple":false,
                            "typeClass":"primitive",
                            "value":"Betekenis- en dimensieloos identificatienummer ter vervanging van het BSN"
                         },
-                        "variableVocabularyURI":{
-                           "typeName":"variableVocabularyURI",
+                        "odisseiVariableVocabularyURI":{
+                           "typeName":"odisseiVariableVocabularyURI",
                            "multiple":false,
                            "typeClass":"primitive",
                            "value":"https://portal.odissei-data.nl/data/cbs/variableThesaurus/cf0133339b23e5a5f737995ca64af06f98f14b8c5c827e8149f10b02934e07860"
                         }
                      },
                      {
-                        "variableName":{
-                           "typeName":"variableName",
+                        "odisseiVariableName":{
+                           "typeName":"odisseiVariableName",
                            "multiple":false,
                            "typeClass":"primitive",
                            "value":"IKVID"
                         },
-                        "variableLabel":{
-                           "typeName":"variableLabel",
+                        "odisseiVariableLabel":{
+                           "typeName":"odisseiVariableLabel",
                            "multiple":false,
                            "typeClass":"primitive",
                            "value":"Door het UWV bepaalde identificatie van de inkomstenverhouding, door het CBS versleuteld"
                         },
-                        "variableVocabularyURI":{
-                           "typeName":"variableVocabularyURI",
+                        "odisseiVariableVocabularyURI":{
+                           "typeName":"odisseiVariableVocabularyURI",
                            "multiple":false,
                            "typeClass":"primitive",
                            "value":"https://portal.odissei-data.nl/data/cbs/variableThesaurus/c8994721cc5a8b1e1268d811634200daa8381bfe2b7659f1ecebe664bf488208c"

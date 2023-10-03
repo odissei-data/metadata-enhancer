@@ -222,47 +222,47 @@
                 "name": "variableInformation",
                 "fields": [
                     {
-                        "typeName": "variable",
+                        "typeName": "odisseiVariable",
                         "multiple": true,
                         "typeClass": "compound",
                         "value": [
                             {
-                                "variableName": {
-                                    "typeName": "variableName",
+                                "odisseiVariableName": {
+                                    "typeName": "odisseiVariableName",
                                     "multiple": false,
                                     "typeClass": "primitive",
                                     "value": "RINPERSOONS"
                                 },
-                                "variableLabel": {
-                                    "typeName": "variableLabel",
+                                "odisseiVariableLabel": {
+                                    "typeName": "odisseiVariableLabel",
                                     "multiple": false,
                                     "typeClass": "primitive",
                                     "value": "Oorsprong RINPERSOON: codes geven status van koppeling met BRP"
                                 }
                             },
                             {
-                                "variableName": {
-                                    "typeName": "variableName",
+                                "odisseiVariableName": {
+                                    "typeName": "odisseiVariableName",
                                     "multiple": false,
                                     "typeClass": "primitive",
                                     "value": "RINPERSOON"
                                 },
-                                "variableLabel": {
-                                    "typeName": "variableLabel",
+                                "odisseiVariableLabel": {
+                                    "typeName": "odisseiVariableLabel",
                                     "multiple": false,
                                     "typeClass": "primitive",
                                     "value": "Betekenis- en dimensieloos identificatienummer ter vervanging van het BSN"
                                 }
                             },
                             {
-                                "variableName": {
-                                    "typeName": "variableName",
+                                "odisseiVariableName": {
+                                    "typeName": "odisseiVariableName",
                                     "multiple": false,
                                     "typeClass": "primitive",
                                     "value": "IKVID"
                                 },
-                                "variableLabel": {
-                                    "typeName": "variableLabel",
+                                "odisseiVariableLabel": {
+                                    "typeName": "odisseiVariableLabel",
                                     "multiple": false,
                                     "typeClass": "primitive",
                                     "value": "Door het UWV bepaalde identificatie van de inkomstenverhouding, door het CBS versleuteld"

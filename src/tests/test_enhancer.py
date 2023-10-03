@@ -111,7 +111,7 @@ def test_existing_enrichments_block_frequency_enhancer(
 
 def test_get_value_cbs_from_metadata(variable_enhancer, cbs_metadata):
     # Test getting the value of the 'variableInformation' block from metadata
-    value = variable_enhancer.get_value_from_metadata('variable',
+    value = variable_enhancer.get_value_from_metadata('odisseiVariable',
                                                       'variableInformation')
     assert isinstance(value, list)
     assert len(value) == 3
