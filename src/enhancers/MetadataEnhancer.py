@@ -1,4 +1,6 @@
+import jmespath
 from fastapi import HTTPException
+from jmespath.exceptions import JMESPathError
 
 from utils import _try_for_key
 
@@ -118,3 +120,21 @@ class MetadataEnhancer:
         }
 
         return self.metadata_blocks[block_name]["fields"]
+
+    def add_to_compound_field(self, type_name, term_field):
+        compound_field = jmespath.search(f"[?typeName=='{type_name}']",
+                                         self.enrichment_block)
+
+        if compound_field:
+            compound_field[0]["value"].append(term_field)
+        else:
+            compound_field = {
+                "typeName": type_name,
+                "multiple": True,
+                "typeClass": "compound",
+                "value": [term_field]
+            }
+            self.enrichment_block.append(compound_field)
+
+
+
