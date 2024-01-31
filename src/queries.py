@@ -1,4 +1,6 @@
 from SPARQLWrapper import SPARQLWrapper, JSON
+import requests
+from rdflib import Graph, Namespace
 
 ELSST_VOCAB_QUERY = """
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -51,3 +53,32 @@ def create_table_terms(sparql_endpoint, query):
         return table
     except KeyError:
         print('Received object does not contain correct keys.')
+
+
+def create_table_concepts_skosmos(skosmos_endpoint, vocabulary):
+    concepts_table = {}
+
+    api_endpoint = f"{skosmos_endpoint}/rest/v1/{vocabulary}/data?lang=nl"
+
+    # Make the API request to get the RDF data in Turtle format
+    response = requests.get(api_endpoint, params={'format': 'text/turtle'})
+
+    if response.status_code == 200:
+        rdf_data = response.text
+
+        # Parse RDF data using rdflib
+        graph = Graph()
+        graph.parse(data=rdf_data, format='turtle')
+
+        skos = Namespace("http://www.w3.org/2004/02/skos/core#")
+
+        # Extract concepts and populate the dictionary
+        for concept_uri, label in graph.subject_objects(skos.prefLabel):
+            concepts_table[str(label).upper()] = str(concept_uri)
+
+    elif response.status_code == 404:
+        print(f"No vocabulary found with the requested id/uri: {vocabulary}")
+    else:
+        print(f"Error: {response.status_code} - {response.reason}")
+
+    return concepts_table
