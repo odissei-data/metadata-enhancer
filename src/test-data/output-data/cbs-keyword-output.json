@@ -108,6 +108,14 @@
                   "typeClass": "primitive",
                   "value": "Werkgelegenheid"
                 }
+              },
+              {
+                "keywordValue": {
+                  "typeName": "keywordValue",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "ZIEKENHUISOPNAMES"
+                }
               }
             ]
           },
@@ -318,6 +326,26 @@
                   "multiple": false,
                   "typeClass": "primitive",
                   "value": "WERKGELEGENHEID"
+                }
+              },
+              {
+                "matchedTerm": {
+                  "typeName": "matchedTerm",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "ZIEKENHUISOPNAMES"
+                },
+                "elsstVarUri1": {
+                  "typeName": "elsstVarUri1",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "https://elsst.cessda.eu/id/3/d5ce3767-f68d-44c6-8f2f-c9d66e3a2023"
+                },
+                "elsstVarLabel1": {
+                  "typeName": "elsstVarLabel1",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "ZIEKENHUISOPNAMES"
                 }
               }
             ]

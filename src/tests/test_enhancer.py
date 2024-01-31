@@ -2,7 +2,8 @@ import json
 import pytest
 from fastapi import HTTPException
 
-from enhancers.ELSSTEnhancer import ELSSTEnhancer
+import terms
+from enhancers.VocabularyEnhancer import VocabularyEnhancer
 from enhancers.FrequencyEnhancer import FrequencyEnhancer
 from enhancers.VariableEnhancer import VariableEnhancer
 
@@ -55,9 +56,11 @@ def cbs_frequency_existing_block_output():
 
 @pytest.fixture()
 def ELSST_enhancer(cbs_metadata, elsst_table):
-    return ELSSTEnhancer(
+    return VocabularyEnhancer(
         cbs_metadata,
-        elsst_table
+        elsst_table,
+        terms.ELSST_terms,
+        terms.ELSST_type_dict
     )
 
 
@@ -88,6 +91,7 @@ def frequency_existing_block_enhancer(cbs_keyword_output,
 
 def test_e2e_ELSST_enhancer(ELSST_enhancer, cbs_keyword_output):
     ELSST_enhancer.enhance_metadata()
+    print(ELSST_enhancer.metadata)
     assert ELSST_enhancer.metadata == cbs_keyword_output
 
 
@@ -98,6 +102,7 @@ def test_e2e_variable_enhancer(variable_enhancer, cbs_variable_output):
 
 def test_e2e_frequency_enhancer(frequency_enhancer, cbs_frequency_output):
     frequency_enhancer.enhance_metadata()
+    print(frequency_enhancer.metadata)
     assert frequency_enhancer.metadata == cbs_frequency_output
 
 
@@ -137,15 +142,15 @@ def test_query_enhancements(variable_enhancer):
 
 def test_unique_ELSST_term(ELSST_enhancer):
     # Call the ELSST_enhance_metadata method twice.
-    ELSST_enhancer.ELSST_enhance_metadata('citation', 'keyword', 'keywordValue')
-    ELSST_enhancer.ELSST_enhance_metadata('citation', 'keyword', 'keywordValue')
+    ELSST_enhancer.vocab_enhance_metadata('citation', 'keyword', 'keywordValue')
+    ELSST_enhancer.vocab_enhance_metadata('citation', 'keyword', 'keywordValue')
 
     # Check that the 'enrichments' block contains only one 'elsstTerm' with 'Werkgelegenheid'.
     enrichments_block = ELSST_enhancer.metadata["datasetVersion"]["metadataBlocks"]["enrichments"]
     elsst_terms = enrichments_block["fields"][0]["value"]
 
-    # There should be only one 'elsstTerm' in the 'enrichments' block
-    assert len(elsst_terms) == 1
+    # There should be only two 'elsstTerm' in the 'enrichments' block
+    assert len(elsst_terms) == 2
 
     # The term in the 'elsstTerm' should be 'Werkgelegenheid'
     assert elsst_terms[0]["matchedTerm"]["value"] == "Werkgelegenheid"

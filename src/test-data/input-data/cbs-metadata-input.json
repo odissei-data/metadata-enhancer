@@ -108,6 +108,14 @@
                   "typeClass": "primitive",
                   "value": "Werkgelegenheid"
                 }
+              },
+              {
+                "keywordValue": {
+                  "typeName": "keywordValue",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "ZIEKENHUISOPNAMES"
+                }
               }
             ]
           },
