@@ -25,8 +25,7 @@ CBS_taxonomy_table = create_table_concepts_skosmos("https://vocabs.cbs.nl",
                                                    "taxonomie")
 CBS_vocab_table = create_table_concepts_skosmos("https://vocabs.cbs.nl",
                                                 "begrippen")
-print(CBS_taxonomy_table)
-print(CBS_vocab_table)
+
 
 @app.get("/version", tags=["Version"])
 async def info():
