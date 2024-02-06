@@ -1,7 +1,5 @@
 import json
 import pytest
-from fastapi import HTTPException
-
 import terms
 from enhancers.VocabularyEnhancer import VocabularyEnhancer
 from enhancers.FrequencyEnhancer import FrequencyEnhancer
@@ -60,7 +58,7 @@ def ELSST_enhancer(cbs_metadata, elsst_table):
         cbs_metadata,
         elsst_table,
         terms.ELSST_terms,
-        terms.ELSST_type_dict
+        "ELSST"
     )
 
 
@@ -122,9 +120,11 @@ def test_get_value_cbs_from_metadata(variable_enhancer, cbs_metadata):
     assert len(value) == 3
 
     # Test getting the value of a non-existing metadata field
-    with pytest.raises(HTTPException):
-        variable_enhancer.get_value_from_metadata('nonexistent_field',
-                                                  'variableInformation')
+    empty_list = variable_enhancer.get_value_from_metadata(
+        'nonexistent_field',
+        'variableInformation')
+    assert isinstance(value, list)
+    assert len(empty_list) == 0
 
 
 def test_query_enhancements(variable_enhancer):
@@ -142,11 +142,15 @@ def test_query_enhancements(variable_enhancer):
 
 def test_unique_ELSST_term(ELSST_enhancer):
     # Call the ELSST_enhance_metadata method twice.
-    ELSST_enhancer.vocab_enhance_metadata('citation', 'keyword', 'keywordValue')
-    ELSST_enhancer.vocab_enhance_metadata('citation', 'keyword', 'keywordValue')
+    ELSST_enhancer.vocab_enhance_metadata('citation', 'keyword',
+                                          'keywordValue')
+    ELSST_enhancer.vocab_enhance_metadata('citation', 'keyword',
+                                          'keywordValue')
 
     # Check that the 'enrichments' block contains only one 'elsstTerm' with 'Werkgelegenheid'.
-    enrichments_block = ELSST_enhancer.metadata["datasetVersion"]["metadataBlocks"]["enrichments"]
+    enrichments_block = \
+        ELSST_enhancer.metadata["datasetVersion"]["metadataBlocks"][
+            "enrichments"]
     elsst_terms = enrichments_block["fields"][0]["value"]
 
     # There should be only two 'elsstTerm' in the 'enrichments' block
