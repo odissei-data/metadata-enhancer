@@ -24,7 +24,8 @@ jobs:
           installer-parallel: true
       - name: Get version and tag image
         run: |
-          echo "version=$(poetry version)" >> $GITHUB_ENV
+          poetry_version=$(poetry version | awk '{print $2}')
+          echo "version=${poetry_version}" >> $GITHUB_ENV
       - name: Login to registry
         uses: docker/login-action@v2
         with:
