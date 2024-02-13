@@ -1,7 +1,3 @@
-import jmespath
-from fastapi import HTTPException
-from jmespath.exceptions import JMESPathError
-
 from utils import _try_for_key
 
 
@@ -53,10 +49,7 @@ class MetadataEnhancer:
                               None)
 
         if not metadata_field:
-            raise HTTPException(
-                status_code=400,
-                detail=f'metadata does not contain {metadata_field_name}'
-            )
+            return []
 
         return metadata_field['value']
 
@@ -69,10 +62,6 @@ class MetadataEnhancer:
             return self.enrichment_table[value_to_match]
         else:
             return None
-
-    def add_enhancements_to_metadata(self, enhancements: list,
-                                     field_dict: dict):
-        pass
 
     def add_enhancement_to_compound_metadata_field(self, metadata_field: dict,
                                                    type_name: str, value: str):
@@ -120,21 +109,3 @@ class MetadataEnhancer:
         }
 
         return self.metadata_blocks[block_name]["fields"]
-
-    def add_to_compound_field(self, type_name, term_field):
-        compound_field = jmespath.search(f"[?typeName=='{type_name}']",
-                                         self.enrichment_block)
-
-        if compound_field:
-            compound_field[0]["value"].append(term_field)
-        else:
-            compound_field = {
-                "typeName": type_name,
-                "multiple": True,
-                "typeClass": "compound",
-                "value": [term_field]
-            }
-            self.enrichment_block.append(compound_field)
-
-
-

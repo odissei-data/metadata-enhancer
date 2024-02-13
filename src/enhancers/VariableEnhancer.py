@@ -21,20 +21,7 @@ class VariableEnhancer(MetadataEnhancer):
                                     'odisseiVariableName.value')
             variable_uri = self.query_enrichment_table(variable)
             if variable_uri:
-                self.add_enhancements_to_metadata(variable_uri, variable_dict)
-
-    def add_enhancements_to_metadata(self, variable_uri: str,
-                                     variable_dict: dict):
-        """ Adds the variable enhancements to the metadata.
-
-        If there are no enhancements, this method returns.
-        Else it adds the first matched URI to the variable that was used to
-        find the match.
-
-        :param variable_uri: Enhancements to add to the metadata.
-        :param variable_dict: The variable field to add the enhancements to.
-        """
-        variable_type_name = 'odisseiVariableVocabularyURI'
-        self.add_enhancement_to_compound_metadata_field(variable_dict,
-                                                        variable_type_name,
-                                                        variable_uri)
+                self.add_enhancement_to_compound_metadata_field(
+                    variable_dict,
+                    'odisseiVariableVocabularyURI',
+                    variable_uri)

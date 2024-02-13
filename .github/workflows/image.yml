@@ -15,15 +15,16 @@ jobs:
       - name: Set python version
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9.14'
-      - name: Perform gruesome hack
-        run: |
-          cp -r pyproject.toml src/stub.toml
+          python-version: '3.10'
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
       - name: Get version and tag image
         run: |
-          pip install tomli
-          cd src/
-          echo "version=`python version.py`" >> $GITHUB_ENV
+          echo "version=$(poetry version)" >> $GITHUB_ENV
       - name: Login to registry
         uses: docker/login-action@v2
         with:

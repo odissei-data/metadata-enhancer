@@ -304,25 +304,31 @@
         "name": "enrichments",
         "fields": [
           {
-            "typeName": "elsstTerm",
+            "typeName": "term",
             "multiple": true,
             "typeClass": "compound",
             "value": [
-{
+              {
                 "matchedTerm": {
                   "typeName": "matchedTerm",
                   "multiple": false,
                   "typeClass": "primitive",
                   "value": "Werkgelegenheid"
                 },
-                "elsstVarUri1": {
-                  "typeName": "elsstVarUri1",
+                "vocabulary": {
+                  "typeName": "vocabulary",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "ELSST"
+                },
+                "vocabVarUri1": {
+                  "typeName": "vocabVarUri1",
                   "multiple": false,
                   "typeClass": "primitive",
                   "value": "https://elsst.cessda.eu/id/3/aa0ddef6-51fa-4eee-bcb5-2b64c41a4818"
                 },
-                "elsstVarLabel1": {
-                  "typeName": "elsstVarLabel1",
+                "vocabVarLabel1": {
+                  "typeName": "vocabVarLabel1",
                   "multiple": false,
                   "typeClass": "primitive",
                   "value": "WERKGELEGENHEID"
@@ -335,14 +341,20 @@
                   "typeClass": "primitive",
                   "value": "ZIEKENHUISOPNAMES"
                 },
-                "elsstVarUri1": {
-                  "typeName": "elsstVarUri1",
+                "vocabulary": {
+                  "typeName": "vocabulary",
+                  "multiple": false,
+                  "typeClass": "primitive",
+                  "value": "ELSST"
+                },
+                "vocabVarUri1": {
+                  "typeName": "vocabVarUri1",
                   "multiple": false,
                   "typeClass": "primitive",
                   "value": "https://elsst.cessda.eu/id/3/d5ce3767-f68d-44c6-8f2f-c9d66e3a2023"
                 },
-                "elsstVarLabel1": {
-                  "typeName": "elsstVarLabel1",
+                "vocabVarLabel1": {
+                  "typeName": "vocabVarLabel1",
                   "multiple": false,
                   "typeClass": "primitive",
                   "value": "ZIEKENHUISOPNAMES"
