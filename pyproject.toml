@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "metadata-enhancer"
-version = "2.2.0"
+version = "2.2.1"
 description = "A service that enriches metadata using controlled vocabularies."
 authors = ["Fjodor van Rijsselberg"]
 include = ["src"]
