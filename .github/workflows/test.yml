@@ -39,5 +39,6 @@ jobs:
         run: poetry install --no-interaction --no-root
       - name: Run Pytest
         run: |
+          source .venv/bin/activate
           cd src/
           python -m pytest
