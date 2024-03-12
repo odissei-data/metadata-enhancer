@@ -20,7 +20,7 @@
             "typeName": "alternativeTitle",
             "multiple": false,
             "typeClass": "primitive",
-            "value": "SPOLISBUS"
+            "value": ["SPOLISBUS"]
           },
           {
             "typeName": "otherId",
