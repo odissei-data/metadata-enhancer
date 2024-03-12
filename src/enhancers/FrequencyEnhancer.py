@@ -19,7 +19,7 @@ class FrequencyEnhancer(MetadataEnhancer):
         alternative_title = self.get_value_from_metadata(
             metadata_field_name='alternativeTitle',
             metadata_block='citation'
-        )
+        )[0]
         frequency_of_use = self.query_enrichment_table(alternative_title)
         if frequency_of_use:
             self.add_enhancement_to_primitive_metadata_field('frequencyOfUse',
