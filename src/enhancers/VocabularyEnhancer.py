@@ -57,7 +57,7 @@ class VocabularyEnhancer(MetadataEnhancer):
         # match
         for term_dict in matchable_terms:
             term = _try_for_key(term_dict, f'{field}.value')
-            if term in self.added_terms_set:
+            if not term or term in self.added_terms_set:
                 break
             label = term.upper()
             uri = self.query_enrichment_table(label)

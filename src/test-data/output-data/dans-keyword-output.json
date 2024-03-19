@@ -1,0 +1,502 @@
+{
+    "publicationDate": "2021-08-31",
+    "persistentUrl": "https://doi.org/10.34894/N58K54",
+    "datasetVersion": {
+        "termsOfAccess": "",
+        "termsOfUse": "",
+        "originalArchive": "",
+        "datasetPersistentId": "doi:10.34894/N58K54",
+        "dataAccessPlace": "<a href=\"https://dab.surf.nl\">https://dab.surf.nl</a>",
+        "license": {
+            "name": "CC0 1.0",
+            "uri": "http://creativecommons.org/publicdomain/zero/1.0",
+            "iconUri": "https://licensebuttons.net/p/zero/1.0/88x31.png"
+        },
+        "metadataBlocks": {
+            "citation": {
+                "displayName": "Citation Metadata",
+                "name": "citation",
+                "fields": [
+                    {
+                        "typeName": "title",
+                        "multiple": false,
+                        "typeClass": "primitive",
+                        "value": "Data: Getting deep into things: Deep mapping in an ''uncharted' territory"
+                    },
+                    {
+                        "typeName": "author",
+                        "multiple": true,
+                        "typeClass": "compound",
+                        "value": [
+                            {
+                                "authorName": {
+                                    "typeName": "authorName",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "Humphris. I"
+                                },
+                                "authorAffiliation": {
+                                    "typeName": "authorAffiliation",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "University of Groningen"
+                                },
+                                "authorIdentifierScheme": {
+                                    "typeName": "authorIdentifierScheme",
+                                    "multiple": false,
+                                    "typeClass": "controlledVocabulary",
+                                    "value": "ORCID"
+                                },
+                                "authorIdentifier": {
+                                    "typeName": "authorIdentifier",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "0000-0002-5816-496X"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "typeName": "datasetContact",
+                        "multiple": true,
+                        "typeClass": "compound",
+                        "value": [
+                            {
+                                "datasetContactEmail": {
+                                    "typeName": "datasetContactEmail",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "portal@odissei.nl"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "typeName": "dsDescription",
+                        "multiple": true,
+                        "typeClass": "compound",
+                        "value": [
+                            {
+                                "dsDescriptionValue": {
+                                    "typeName": "dsDescriptionValue",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "Areas in cities typically denoted as 'Vacant and Derelict Land', are frequently presented in policy documents as absent of meaning and awaiting development. However, visits to many of these sites offer evidence of abundant citizen activity occurring outside of planning policy. Dog walkers, DIY skatepark builders, pigeon fanciers and reminiscing former factory workers, for example, can all be found inscribing their own narratives, in palimpsest like fashion, upon these landscapes. This spatio-temporally bound and layered mix of contested meanings extends beyond representational capacity offered by traditional cartographic methods as employed in policy decision making. Such a failure to represent these ecologies of citizen-led practices often result in their erasure at the point of formal redevelopment.\r\nWe explore how one alternative approach may respond to these challenges of representation through a case study project in Glasgow, Scotland. Deep mapping is an ethnographically informed, arts research practice, drawing Cifford Geertz's notion of 'thick description' into a visual-performative realm and seeking to extend beyond the thin map by creating multi-faceted and open-ended descriptions of place. As such, deep maps are not only investigations into place but of equal concern are the processes by which representations of place are generated. Implicit in this are questions about the role of the researcher as initiator, gatherer, archivist or artist and the intertwining between the place and the self. As a methodological approach that embraces multiplicity and favours the 'politicized, passionate, and partisan' over the totalising objectivity of traditional maps, deep mapping offers a potential to give voice to marginalised, micro-narratives existing in tension with one another and within dominant meta-narratives but also triggers new questions over inclusivity. This methodologically focussed chapter explores the ways in which an ethnographically informed, arts research practice may offer alternative insight into spaces of non-aligned narratives. The results from this investigation will offer new framings of spaces within the urban landscape conventionally represented as vacant or empty and generate perspectives on how art research methods may provide valuable investigative tools for decision makers working in such contexts."
+                                },
+                                "dsDescriptionDate": {
+                                    "typeName": "dsDescriptionDate",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "2021"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "typeName": "subject",
+                        "multiple": true,
+                        "typeClass": "controlledVocabulary",
+                        "value": [
+                            "Arts and Humanities",
+                            "Social Sciences"
+                        ]
+                    },
+                    {
+                        "typeName": "keyword",
+                        "multiple": true,
+                        "typeClass": "compound",
+                        "value": [
+                            {
+                                "keywordValue": {
+                                    "typeName": "keywordValue",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "Urban spaces"
+                                }
+                            },
+                            {
+                                "keywordValue": {
+                                    "typeName": "keywordValue",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "Urban areas"
+                                }
+                            },
+                            {
+                                "keywordValue": {
+                                    "typeName": "keywordValue",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "Urban renewal"
+                                }
+                            },
+                            {
+                                "keywordValue": {
+                                    "typeName": "keywordValue",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "Vacant land"
+                                }
+                            },
+                            {
+                                "keywordValue": {
+                                    "typeName": "keywordValue",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "Communities"
+                                }
+                            },
+                            {
+                                "keywordValue": {
+                                    "typeName": "keywordValue",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "Community action"
+                                }
+                            },
+                            {
+                                "keywordValue": {
+                                    "typeName": "keywordValue",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "Edgelands"
+                                }
+                            },
+                            {
+                                "keywordValue": {
+                                    "typeName": "keywordValue",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "DIY urbanism"
+                                }
+                            },
+                            {
+                                "keywordValue": {
+                                    "typeName": "keywordValue",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "Guerilla urbanism"
+                                }
+                            },
+                            {
+                                "keywordValue": {
+                                    "typeName": "keywordValue",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "Tactical urbanism"
+                                }
+                            },
+                            {
+                                "keywordVocabulary": {
+                                    "typeName": "keywordVocabulary",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "Society and Culture"
+                                }
+                            },
+                            {
+                                "keywordVocabulary": {
+                                    "typeName": "keywordVocabulary",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "Community Urban and Rural Life"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "typeName": "language",
+                        "multiple": true,
+                        "typeClass": "controlledVocabulary",
+                        "value": [
+                            "English"
+                        ]
+                    },
+                    {
+                        "typeName": "producer",
+                        "multiple": true,
+                        "typeClass": "compound",
+                        "value": [
+                            {
+                                "producerName": {
+                                    "typeName": "producerName",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "Humphris, Imogen"
+                                },
+                                "producerAffiliation": {
+                                    "typeName": "producerAffiliation",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "University of Groningen"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "typeName": "productionDate",
+                        "multiple": false,
+                        "typeClass": "primitive",
+                        "value": "2020-11-01"
+                    },
+                    {
+                        "typeName": "productionPlace",
+                        "multiple": true,
+                        "typeClass": "primitive",
+                        "value": [
+                            "Glasgow, Scotland"
+                        ]
+                    },
+                    {
+                        "typeName": "grantNumber",
+                        "multiple": true,
+                        "typeClass": "compound",
+                        "value": [
+                            {
+                                "grantNumberAgency": {
+                                    "typeName": "grantNumberAgency",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "European Commission"
+                                },
+                                "grantNumberValue": {
+                                    "typeName": "grantNumberValue",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "765389"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "typeName": "depositor",
+                        "multiple": false,
+                        "typeClass": "primitive",
+                        "value": "Imogen, Humphris"
+                    },
+                    {
+                        "typeName": "dateOfDeposit",
+                        "multiple": false,
+                        "typeClass": "primitive",
+                        "value": "2021-08-20"
+                    },
+                    {
+                        "typeName": "timePeriodCovered",
+                        "multiple": true,
+                        "typeClass": "compound",
+                        "value": [
+                            {
+                                "timePeriodCoveredStart": {
+                                    "typeName": "timePeriodCoveredStart",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "2005-01-01"
+                                },
+                                "timePeriodCoveredEnd": {
+                                    "typeName": "timePeriodCoveredEnd",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "2020-12-31"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "typeName": "dateOfCollection",
+                        "multiple": true,
+                        "typeClass": "compound",
+                        "value": [
+                            {
+                                "dateOfCollectionStart": {
+                                    "typeName": "dateOfCollectionStart",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "2020-11-01"
+                                },
+                                "dateOfCollectionEnd": {
+                                    "typeName": "dateOfCollectionEnd",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "2020-12-31"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "typeName": "kindOfData",
+                        "multiple": true,
+                        "typeClass": "primitive",
+                        "value": [
+                            "Still image",
+                            "Notation"
+                        ]
+                    }
+                ]
+            },
+            "geospatial": {
+                "displayName": "Geospatial Metadata",
+                "fields": []
+            },
+            "socialscience": {
+                "displayName": "Social Science and Humanities Metadata",
+                "fields": [
+                    {
+                        "typeName": "targetSampleSize",
+                        "multiple": false,
+                        "typeClass": "compound",
+                        "value": {}
+                    },
+                    {
+                        "typeName": "socialScienceNotes",
+                        "multiple": false,
+                        "typeClass": "compound",
+                        "value": {}
+                    }
+                ]
+            },
+            "enrichments": {
+                "displayName": "Enriched Metadata",
+                "name": "enrichments",
+                "fields": [
+                    {
+                        "typeName": "term",
+                        "multiple": true,
+                        "typeClass": "compound",
+                        "value": [
+                            {
+                                "matchedTerm": {
+                                    "typeName": "matchedTerm",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "Urban spaces"
+                                },
+                                "vocabulary": {
+                                    "typeName": "vocabulary",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "ELSST"
+                                },
+                                "vocabVarUri1": {
+                                    "typeName": "vocabVarUri1",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "https://elsst.cessda.eu/id/4/2dc633a5-382d-42ab-8e36-12f7c3dbb597"
+                                },
+                                "vocabVarLabel1": {
+                                    "typeName": "vocabVarLabel1",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "URBAN SPACES"
+                                }
+                            },
+                            {
+                                "matchedTerm": {
+                                    "typeName": "matchedTerm",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "Urban areas"
+                                },
+                                "vocabulary": {
+                                    "typeName": "vocabulary",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "ELSST"
+                                },
+                                "vocabVarUri1": {
+                                    "typeName": "vocabVarUri1",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "https://elsst.cessda.eu/id/4/1b603067-708b-4aed-af7a-0fb6b56c0224"
+                                },
+                                "vocabVarLabel1": {
+                                    "typeName": "vocabVarLabel1",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "URBAN AREAS"
+                                }
+                            },
+                            {
+                                "matchedTerm": {
+                                    "typeName": "matchedTerm",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "Urban renewal"
+                                },
+                                "vocabulary": {
+                                    "typeName": "vocabulary",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "ELSST"
+                                },
+                                "vocabVarUri1": {
+                                    "typeName": "vocabVarUri1",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "https://elsst.cessda.eu/id/4/effad93f-3788-480d-b693-70ec1644032f"
+                                },
+                                "vocabVarLabel1": {
+                                    "typeName": "vocabVarLabel1",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "URBAN RENEWAL"
+                                }
+                            },
+                            {
+                                "matchedTerm": {
+                                    "typeName": "matchedTerm",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "Communities"
+                                },
+                                "vocabulary": {
+                                    "typeName": "vocabulary",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "ELSST"
+                                },
+                                "vocabVarUri1": {
+                                    "typeName": "vocabVarUri1",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "https://elsst.cessda.eu/id/4/b796c4f4-84d1-403d-82e3-57b86b6c2d7d"
+                                },
+                                "vocabVarLabel1": {
+                                    "typeName": "vocabVarLabel1",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "COMMUNITIES"
+                                }
+                            },
+                            {
+                                "matchedTerm": {
+                                    "typeName": "matchedTerm",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "Community action"
+                                },
+                                "vocabulary": {
+                                    "typeName": "vocabulary",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "ELSST"
+                                },
+                                "vocabVarUri1": {
+                                    "typeName": "vocabVarUri1",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "https://elsst.cessda.eu/id/4/50c11a70-1235-435d-9682-43de6a14a51a"
+                                },
+                                "vocabVarLabel1": {
+                                    "typeName": "vocabVarLabel1",
+                                    "multiple": false,
+                                    "typeClass": "primitive",
+                                    "value": "COMMUNITY ACTION"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}
