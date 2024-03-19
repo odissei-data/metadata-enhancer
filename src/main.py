@@ -9,11 +9,10 @@ from enhancers.VariableEnhancer import VariableEnhancer
 from api.queries import CBS_VOCAB_QUERY, ELSST_VOCAB_QUERY
 from api.skosmos import create_table_concepts_skosmos
 from api.fuseki import create_table_terms
-from schema.input import EnhancerInput, VocabInput, LangInput, Lang
+from schema.input import EnhancerInput, VocabInput, Lang
 from version import get_version
 
 app = FastAPI()
-
 GITHUB_RAW_URL = os.environ['GITHUB_RAW_URL']
 ELSST_FUSEKI_URL = os.environ['ELSST_FUSEKI_URL']
 VARIABLE_FUSEKI_URL = os.environ['VARIABLE_FUSEKI_URL']

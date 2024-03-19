@@ -27,13 +27,28 @@ def frequency_table():
 
 
 @pytest.fixture()
+def elsst_en_table():
+    return open_json_file("test-data/table-data/elsst_en_table.json")
+
+
+@pytest.fixture()
 def cbs_metadata():
     return open_json_file("test-data/input-data/cbs-metadata-input.json")
 
 
 @pytest.fixture()
+def dans_metadata():
+    return open_json_file("test-data/input-data/dans-metadata-input.json")
+
+
+@pytest.fixture()
 def cbs_keyword_output():
     return open_json_file("test-data/output-data/cbs-keyword-output.json")
+
+
+@pytest.fixture()
+def dans_keyword_output():
+    return open_json_file("test-data/output-data/dans-keyword-output.json")
 
 
 @pytest.fixture()
@@ -57,6 +72,16 @@ def ELSST_enhancer(cbs_metadata, elsst_table):
     return VocabularyEnhancer(
         cbs_metadata,
         elsst_table,
+        terms.ELSST_terms,
+        "ELSST"
+    )
+
+
+@pytest.fixture()
+def ELSST_en_enhancer(dans_metadata, elsst_en_table):
+    return VocabularyEnhancer(
+        dans_metadata,
+        elsst_en_table,
         terms.ELSST_terms,
         "ELSST"
     )
@@ -89,8 +114,12 @@ def frequency_existing_block_enhancer(cbs_keyword_output,
 
 def test_e2e_ELSST_enhancer(ELSST_enhancer, cbs_keyword_output):
     ELSST_enhancer.enhance_metadata()
-    print(ELSST_enhancer.metadata)
     assert ELSST_enhancer.metadata == cbs_keyword_output
+
+
+def test_e2e_ELSST_en_enhancer(ELSST_en_enhancer, dans_keyword_output):
+    ELSST_en_enhancer.enhance_metadata()
+    assert ELSST_en_enhancer.metadata == dans_keyword_output
 
 
 def test_e2e_variable_enhancer(variable_enhancer, cbs_variable_output):
@@ -100,7 +129,6 @@ def test_e2e_variable_enhancer(variable_enhancer, cbs_variable_output):
 
 def test_e2e_frequency_enhancer(frequency_enhancer, cbs_frequency_output):
     frequency_enhancer.enhance_metadata()
-    print(frequency_enhancer.metadata)
     assert frequency_enhancer.metadata == cbs_frequency_output
 
 
