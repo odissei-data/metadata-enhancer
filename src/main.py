@@ -92,7 +92,7 @@ async def enrich_with_cbs_taxonomy(enhancer_input: EnhancerInput) -> dict:
         enhancer_input.metadata,
         CBS_taxonomy_table,
         terms.CBS_taxonomy_terms,
-        "CBS taxonomie"
+        "CBS taxonomy"
     )
     taxonomy_enhancer.enhance_metadata()
     return taxonomy_enhancer.metadata
@@ -102,9 +102,9 @@ async def enrich_with_cbs_taxonomy(enhancer_input: EnhancerInput) -> dict:
 async def enrich_with_cbs_concepts(enhancer_input: EnhancerInput) -> dict:
     vocab_enhancer = VocabularyEnhancer(
         enhancer_input.metadata,
-        CBS_taxonomy_table,
+        CBS_vocab_table,
         terms.CBS_vocab_terms,
-        "CBS begrippen"
+        "CBS concepts"
     )
     vocab_enhancer.enhance_metadata()
     return vocab_enhancer.metadata
