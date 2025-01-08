@@ -22,10 +22,10 @@ ELSST_VOCAB_URL = os.environ['ELSST_VOCAB_URL']
 CBS_table = create_table_terms(VARIABLE_FUSEKI_URL, CBS_VOCAB_QUERY)
 ELSST_table = create_table_terms(ELSST_FUSEKI_URL, ELSST_VOCAB_QUERY)
 frequency_table = utils.load_tsv_from_github_raw(GITHUB_RAW_URL)
-CBS_taxonomy_table = create_table_concepts_skosmos(CBS_VOCAB_URL,
-                                                   "taxonomie", Lang.nl)
-CBS_vocab_table = create_table_concepts_skosmos(CBS_VOCAB_URL,
-                                                "begrippen", Lang.nl)
+# CBS_taxonomy_table = create_table_concepts_skosmos(CBS_VOCAB_URL,
+#                                                    "taxonomie", Lang.nl)
+# CBS_vocab_table = create_table_concepts_skosmos(CBS_VOCAB_URL,
+#                                                 "begrippen", Lang.nl)
 ELSST_english_table = create_table_concepts_skosmos(ELSST_VOCAB_URL, "elsst-4",
                                                     Lang.en)
 
@@ -85,29 +85,29 @@ async def enrich_with_frequency(enhancer_input: EnhancerInput) -> dict:
     return frequency_enhancer.metadata
 
 
-@app.post('/enrich/cbs-taxonomy',
-          tags=['Vocabulary enrichment'])
-async def enrich_with_cbs_taxonomy(enhancer_input: EnhancerInput) -> dict:
-    taxonomy_enhancer = VocabularyEnhancer(
-        enhancer_input.metadata,
-        CBS_taxonomy_table,
-        terms.CBS_taxonomy_terms,
-        "CBS taxonomy"
-    )
-    taxonomy_enhancer.enhance_metadata()
-    return taxonomy_enhancer.metadata
-
-
-@app.post('/enrich/cbs-concepts', tags=['Vocabulary enrichment'])
-async def enrich_with_cbs_concepts(enhancer_input: EnhancerInput) -> dict:
-    vocab_enhancer = VocabularyEnhancer(
-        enhancer_input.metadata,
-        CBS_vocab_table,
-        terms.CBS_vocab_terms,
-        "CBS concepts"
-    )
-    vocab_enhancer.enhance_metadata()
-    return vocab_enhancer.metadata
+# @app.post('/enrich/cbs-taxonomy',
+#           tags=['Vocabulary enrichment'])
+# async def enrich_with_cbs_taxonomy(enhancer_input: EnhancerInput) -> dict:
+#     taxonomy_enhancer = VocabularyEnhancer(
+#         enhancer_input.metadata,
+#         CBS_taxonomy_table,
+#         terms.CBS_taxonomy_terms,
+#         "CBS taxonomy"
+#     )
+#     taxonomy_enhancer.enhance_metadata()
+#     return taxonomy_enhancer.metadata
+#
+#
+# @app.post('/enrich/cbs-concepts', tags=['Vocabulary enrichment'])
+# async def enrich_with_cbs_concepts(enhancer_input: EnhancerInput) -> dict:
+#     vocab_enhancer = VocabularyEnhancer(
+#         enhancer_input.metadata,
+#         CBS_vocab_table,
+#         terms.CBS_vocab_terms,
+#         "CBS concepts"
+#     )
+#     vocab_enhancer.enhance_metadata()
+#     return vocab_enhancer.metadata
 
 
 @app.post('/enrich/vocabulary', tags=['Vocabulary enrichment'])
