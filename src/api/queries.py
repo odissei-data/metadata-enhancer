@@ -27,3 +27,29 @@ WHERE {
   }
 }
 """
+
+CBS_TAXONOMIE_QUERY = """
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+SELECT ?iri ?lbl
+ WHERE {
+  GRAPH <https://taxonomie.cbs.nl/vocab/>
+  {?iri skos:prefLabel ?lbl .
+    FILTER langMatches( lang(?lbl), "NL" )
+  }
+}
+"""
+
+CBS_BEGRIPPEN_QUERY = """
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+SELECT ?iri ?lbl
+ WHERE {
+  GRAPH <http://vocabs.cbs.nl/begrippen/>
+  {?iri skos:prefLabel ?lbl .
+    FILTER langMatches( lang(?lbl), "NL" )
+  }
+}
+"""

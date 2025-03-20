@@ -6,7 +6,7 @@ from fastapi import FastAPI, HTTPException, Path
 from enhancers.FrequencyEnhancer import FrequencyEnhancer
 from enhancers.VocabularyEnhancer import VocabularyEnhancer
 from enhancers.VariableEnhancer import VariableEnhancer
-from api.queries import CBS_VOCAB_QUERY, ELSST_VOCAB_QUERY
+from api.queries import CBS_BEGRIPPEN_QUERY, CBS_TAXONOMIE_QUERY, CBS_VOCAB_QUERY
 from api.skosmos import create_table_concepts_skosmos
 from api.fuseki import create_table_terms
 from schema.input import EnhancerInput, VocabInput, Lang
@@ -19,14 +19,13 @@ VARIABLE_FUSEKI_URL = os.environ['VARIABLE_FUSEKI_URL']
 CBS_VOCAB_URL = os.environ['CBS_VOCAB_URL']
 ELSST_VOCAB_URL = os.environ['ELSST_VOCAB_URL']
 
-CBS_table = create_table_terms(VARIABLE_FUSEKI_URL, CBS_VOCAB_QUERY)
-ELSST_table = create_table_terms(ELSST_FUSEKI_URL, ELSST_VOCAB_QUERY)
 frequency_table = utils.load_tsv_from_github_raw(GITHUB_RAW_URL)
-CBS_taxonomy_table = create_table_concepts_skosmos(CBS_VOCAB_URL,
-                                                   "taxonomie", Lang.nl)
-CBS_vocab_table = create_table_concepts_skosmos(CBS_VOCAB_URL,
-                                                "begrippen", Lang.nl)
-ELSST_english_table = create_table_concepts_skosmos(ELSST_VOCAB_URL, "elsst-4",
+CBS_table = create_table_terms(VARIABLE_FUSEKI_URL, CBS_VOCAB_QUERY)
+CBS_taxonomy_table = create_table_terms(CBS_VOCAB_URL, CBS_TAXONOMIE_QUERY)
+CBS_vocab_table = create_table_terms(CBS_VOCAB_URL, CBS_BEGRIPPEN_QUERY)
+ELSST_table = create_table_concepts_skosmos(ELSST_VOCAB_URL, "elsst-5",
+                                                    Lang.nl)
+ELSST_english_table = create_table_concepts_skosmos(ELSST_VOCAB_URL, "elsst-5",
                                                     Lang.en)
 
 
