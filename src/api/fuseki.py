@@ -17,7 +17,7 @@ def create_table_terms(sparql_endpoint, query):
     try:
         results = sparql.query().convert()
         for result in results["results"]["bindings"]:
-            table[result["lbl"]["value"]] = result["iri"]["value"]
+            table[result["lbl"]["value"].upper()] = result["iri"]["value"]
         return table
     except KeyError:
         print('Received object does not contain correct keys.')
