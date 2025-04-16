@@ -19,7 +19,7 @@ class VariableEnhancer(MetadataEnhancer):
         for variable_dict in variables:
             variable = _try_for_key(variable_dict,
                                     'odisseiVariableName.value')
-            variable_uri = self.query_enrichment_table(variable)
+            variable_uri = self.query_enrichment_table(variable.upper())
             if variable_uri:
                 self.add_enhancement_to_compound_metadata_field(
                     variable_dict,
