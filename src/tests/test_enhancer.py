@@ -73,7 +73,8 @@ def ELSST_enhancer(cbs_metadata, elsst_table):
         cbs_metadata,
         elsst_table,
         terms.ELSST_terms,
-        "ELSST"
+        "ELSST",
+        "enrichedElsstClassification"
     )
 
 
@@ -83,7 +84,8 @@ def ELSST_en_enhancer(dans_metadata, elsst_en_table):
         dans_metadata,
         elsst_en_table,
         terms.ELSST_terms,
-        "ELSST"
+        "ELSST",
+        "enrichedElsstClassification"
     )
 
 
@@ -185,4 +187,4 @@ def test_unique_ELSST_term(ELSST_enhancer):
     assert len(elsst_terms) == 2
 
     # The term in the 'elsstTerm' should be 'Werkgelegenheid'
-    assert elsst_terms[0]["matchedTerm"]["value"] == "Werkgelegenheid"
+    assert elsst_terms[0] == "https://elsst.cessda.eu/id/3/aa0ddef6-51fa-4eee-bcb5-2b64c41a4818"

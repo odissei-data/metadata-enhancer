@@ -2,7 +2,7 @@ import requests
 from rdflib import Graph, Namespace
 
 
-def create_table_concepts_skosmos(skosmos_endpoint, vocabulary, language):
+def create_table_concepts_skosmos(skosmos_endpoint, vocabulary, language) -> dict:
     concepts_table = {}
 
     api_endpoint = f"{skosmos_endpoint}/rest/v1/{vocabulary}" \

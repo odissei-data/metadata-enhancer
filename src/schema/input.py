@@ -5,16 +5,16 @@ from pydantic import BaseModel, Field
 
 
 class EnhancerInput(BaseModel):
-    metadata: list | dict | Any
+    metadata: Any = Field(..., description="Metadata as a list or dict")
 
 
 class VocabInput(BaseModel):
-    metadata: list | dict | Any
-    endpoint: str = Field(example="https://vocabs.cbs.nl")
-    vocabulary: str = Field(example="begrippen")
-    vocabulary_name: str = Field(example="CBS concepts")
-    language: str = Field(example="nl")
-    terms: list = Field(example="keyword")
+    metadata: Any = Field(..., description="Metadata as a list or dict")
+    endpoint: str = Field(..., description="The endpoint URL of the vocabulary service")
+    vocabulary: str = Field(..., description="The vocabulary identifier")
+    vocabulary_name: str = Field(..., description="The human-readable name of the vocabulary")
+    language: str = Field(..., description="The language code (e.g., 'nl' for Dutch)")
+    terms: list[str] = Field(..., description="A list of terms to look up in the vocabulary")
 
 
 class Lang(str, Enum):
