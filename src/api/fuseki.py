@@ -1,7 +1,7 @@
 from SPARQLWrapper import SPARQLWrapper, JSON
 
 
-def create_table_terms(sparql_endpoint, query):
+def create_table_terms(sparql_endpoint, query) -> dict:
     """ Creates a dict from a vocab with 'label: uri' as the key/value pair.
 
     TODO: Think about possibility of multiple uri's being returned.
@@ -16,8 +16,12 @@ def create_table_terms(sparql_endpoint, query):
     table = {}
     try:
         results = sparql.query().convert()
-        for result in results["results"]["bindings"]:
-            table[result["lbl"]["value"].upper()] = result["iri"]["value"]
+        for result in results["results"]["bindings"]: # type: ignore
+            table[result["lbl"]["value"].upper()] = result["iri"]["value"] # type: ignore
         return table
     except KeyError:
         print('Received object does not contain correct keys.')
+        return {}
+    except Exception as e:
+        print(f'Error connecting to SPARQL endpoint: {e}')
+        return {}

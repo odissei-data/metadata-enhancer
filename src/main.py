@@ -20,14 +20,29 @@ CBS_VOCAB_URL = os.environ['CBS_VOCAB_URL']
 ELSST_VOCAB_URL = os.environ['ELSST_VOCAB_URL']
 
 frequency_table = utils.load_tsv_from_github_raw(GITHUB_RAW_URL)
+if frequency_table is None:
+    raise RuntimeError("Failed to load frequency table.")
+
 CBS_table = create_table_terms(VARIABLE_FUSEKI_URL, CBS_VOCAB_QUERY)
+if CBS_table is None:
+    raise RuntimeError("Failed to load CBS table.")
+
 CBS_taxonomy_table = create_table_terms(CBS_VOCAB_URL, CBS_TAXONOMIE_QUERY)
+if CBS_taxonomy_table is None:
+    raise RuntimeError("Failed to load CBS taxonomy table.")
+
 CBS_vocab_table = create_table_terms(CBS_VOCAB_URL, CBS_BEGRIPPEN_QUERY)
+if CBS_vocab_table is None:
+    raise RuntimeError("Failed to load CBS vocab table.")
 ELSST_table = create_table_concepts_skosmos(ELSST_VOCAB_URL, "elsst-5",
                                                     Lang.nl)
+if ELSST_table is None:
+    raise RuntimeError("Failed to load ELSST table.")
+
 ELSST_english_table = create_table_concepts_skosmos(ELSST_VOCAB_URL, "elsst-5",
                                                     Lang.en)
-
+if ELSST_english_table is None:
+    raise RuntimeError("Failed to load ELSST English table.")
 
 @app.get("/version", tags=["Version"])
 async def info():
@@ -56,7 +71,8 @@ async def enrich_with_ELSST(
         enhancer_input.metadata,
         elsst_table,
         terms.ELSST_terms,
-        "ELSST"
+        "ELSST",
+        "enrichedElsstClassification"
     )
 
     ELSST_enhancer.enhance_metadata()
@@ -91,7 +107,8 @@ async def enrich_with_cbs_taxonomy(enhancer_input: EnhancerInput) -> dict:
         enhancer_input.metadata,
         CBS_taxonomy_table,
         terms.CBS_taxonomy_terms,
-        "CBS taxonomy"
+        "CBS taxonomy",
+        "enrichedCbsTaxonomyTerm"
     )
     taxonomy_enhancer.enhance_metadata()
     return taxonomy_enhancer.metadata
@@ -103,7 +120,8 @@ async def enrich_with_cbs_concepts(enhancer_input: EnhancerInput) -> dict:
         enhancer_input.metadata,
         CBS_vocab_table,
         terms.CBS_vocab_terms,
-        "CBS concepts"
+        "CBS concepts",
+        "enrichedCbsConcept"
     )
     vocab_enhancer.enhance_metadata()
     return vocab_enhancer.metadata
@@ -121,6 +139,7 @@ async def enrich_with_vocabulary(vocab_input: VocabInput) -> dict:
         vocab_table,
         vocab_input.terms,
         vocab_input.vocabulary_name,
+        vocab_input.type_name
     )
     vocab_enhancer.enhance_metadata()
     return vocab_enhancer.metadata

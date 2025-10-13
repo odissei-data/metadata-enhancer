@@ -359,140 +359,15 @@
                 "name": "enrichments",
                 "fields": [
                     {
-                        "typeName": "term",
+                        "typeName": "enrichedElsstClassification",
                         "multiple": true,
-                        "typeClass": "compound",
+                        "typeClass": "primitive",
                         "value": [
-                            {
-                                "matchedTerm": {
-                                    "typeName": "matchedTerm",
-                                    "multiple": false,
-                                    "typeClass": "primitive",
-                                    "value": "Urban spaces"
-                                },
-                                "vocabulary": {
-                                    "typeName": "vocabulary",
-                                    "multiple": false,
-                                    "typeClass": "primitive",
-                                    "value": "ELSST"
-                                },
-                                "vocabVarUri1": {
-                                    "typeName": "vocabVarUri1",
-                                    "multiple": false,
-                                    "typeClass": "primitive",
-                                    "value": "https://elsst.cessda.eu/id/4/2dc633a5-382d-42ab-8e36-12f7c3dbb597"
-                                },
-                                "vocabVarLabel1": {
-                                    "typeName": "vocabVarLabel1",
-                                    "multiple": false,
-                                    "typeClass": "primitive",
-                                    "value": "URBAN SPACES"
-                                }
-                            },
-                            {
-                                "matchedTerm": {
-                                    "typeName": "matchedTerm",
-                                    "multiple": false,
-                                    "typeClass": "primitive",
-                                    "value": "Urban areas"
-                                },
-                                "vocabulary": {
-                                    "typeName": "vocabulary",
-                                    "multiple": false,
-                                    "typeClass": "primitive",
-                                    "value": "ELSST"
-                                },
-                                "vocabVarUri1": {
-                                    "typeName": "vocabVarUri1",
-                                    "multiple": false,
-                                    "typeClass": "primitive",
-                                    "value": "https://elsst.cessda.eu/id/4/1b603067-708b-4aed-af7a-0fb6b56c0224"
-                                },
-                                "vocabVarLabel1": {
-                                    "typeName": "vocabVarLabel1",
-                                    "multiple": false,
-                                    "typeClass": "primitive",
-                                    "value": "URBAN AREAS"
-                                }
-                            },
-                            {
-                                "matchedTerm": {
-                                    "typeName": "matchedTerm",
-                                    "multiple": false,
-                                    "typeClass": "primitive",
-                                    "value": "Urban renewal"
-                                },
-                                "vocabulary": {
-                                    "typeName": "vocabulary",
-                                    "multiple": false,
-                                    "typeClass": "primitive",
-                                    "value": "ELSST"
-                                },
-                                "vocabVarUri1": {
-                                    "typeName": "vocabVarUri1",
-                                    "multiple": false,
-                                    "typeClass": "primitive",
-                                    "value": "https://elsst.cessda.eu/id/4/effad93f-3788-480d-b693-70ec1644032f"
-                                },
-                                "vocabVarLabel1": {
-                                    "typeName": "vocabVarLabel1",
-                                    "multiple": false,
-                                    "typeClass": "primitive",
-                                    "value": "URBAN RENEWAL"
-                                }
-                            },
-                            {
-                                "matchedTerm": {
-                                    "typeName": "matchedTerm",
-                                    "multiple": false,
-                                    "typeClass": "primitive",
-                                    "value": "Communities"
-                                },
-                                "vocabulary": {
-                                    "typeName": "vocabulary",
-                                    "multiple": false,
-                                    "typeClass": "primitive",
-                                    "value": "ELSST"
-                                },
-                                "vocabVarUri1": {
-                                    "typeName": "vocabVarUri1",
-                                    "multiple": false,
-                                    "typeClass": "primitive",
-                                    "value": "https://elsst.cessda.eu/id/4/b796c4f4-84d1-403d-82e3-57b86b6c2d7d"
-                                },
-                                "vocabVarLabel1": {
-                                    "typeName": "vocabVarLabel1",
-                                    "multiple": false,
-                                    "typeClass": "primitive",
-                                    "value": "COMMUNITIES"
-                                }
-                            },
-                            {
-                                "matchedTerm": {
-                                    "typeName": "matchedTerm",
-                                    "multiple": false,
-                                    "typeClass": "primitive",
-                                    "value": "Community action"
-                                },
-                                "vocabulary": {
-                                    "typeName": "vocabulary",
-                                    "multiple": false,
-                                    "typeClass": "primitive",
-                                    "value": "ELSST"
-                                },
-                                "vocabVarUri1": {
-                                    "typeName": "vocabVarUri1",
-                                    "multiple": false,
-                                    "typeClass": "primitive",
-                                    "value": "https://elsst.cessda.eu/id/4/50c11a70-1235-435d-9682-43de6a14a51a"
-                                },
-                                "vocabVarLabel1": {
-                                    "typeName": "vocabVarLabel1",
-                                    "multiple": false,
-                                    "typeClass": "primitive",
-                                    "value": "COMMUNITY ACTION"
-                                }
-                            }
+                            "https://elsst.cessda.eu/id/4/2dc633a5-382d-42ab-8e36-12f7c3dbb597",
+                            "https://elsst.cessda.eu/id/4/1b603067-708b-4aed-af7a-0fb6b56c0224",
+                            "https://elsst.cessda.eu/id/4/effad93f-3788-480d-b693-70ec1644032f",
+                            "https://elsst.cessda.eu/id/4/b796c4f4-84d1-403d-82e3-57b86b6c2d7d",
+                            "https://elsst.cessda.eu/id/4/50c11a70-1235-435d-9682-43de6a14a51a"
                         ]
                     }
                 ]
