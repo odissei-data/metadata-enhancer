@@ -5,33 +5,28 @@ on:
     tags:
       - '*'
 
+env:
+  TAG: $GITHUB_REF_NAME
+  ORG: odissei
+
 jobs:
   push:
     name: Push to registry.
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
-      - name: Set python version
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-        with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-          installer-parallel: true
-      - name: Get version and tag image
-        run: |
-          poetry_version=$(poetry version | awk '{print $2}')
-          echo "version=${poetry_version}" >> $GITHUB_ENV
+        uses: actions/checkout@v4
+
       - name: Login to registry
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_PASSWORD }}
-      - name: Push to dockerhub
-        run: |
-          docker build . --file Dockerfile --tag fjodorvr/metadata-enhancer:${{ env.version }}
-          docker push fjodorvr/metadata-enhancer:${{ env.version }}
+
+      - name: Build and push Prefect Worker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile
+          push: true
+          tags: ${{ env.ORG }}/metadata-enhancer:${{ github.ref_name }}
