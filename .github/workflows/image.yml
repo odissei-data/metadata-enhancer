@@ -29,4 +29,6 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: ${{ env.ORG }}/metadata-enhancer:${{ github.ref_name }}
+          tags: |
+            ${{ env.ORG }}/metadata-enhancer:${{ github.ref_name }}
+            ${{ env.ORG }}/metadata-enhancer:latest
