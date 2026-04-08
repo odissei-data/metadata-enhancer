@@ -15,3 +15,6 @@ COPY pyproject.toml ./stub.toml
 
 EXPOSE 7070
 RUN pip install uvicorn
+
+LABEL org.opencontainers.image.source="https://github.com/odissei-data/metadata-enhancer"
+LABEL org.opencontainers.image.description="Service to enhance metadata with terms or URIs retrieved from external vocabularies."
