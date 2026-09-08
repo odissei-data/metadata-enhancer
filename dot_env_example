@@ -10,3 +10,4 @@ GITHUB_RAW_URL="https://raw.githubusercontent.com/odissei-data/semantic-enrichme
 
 CBS_VOCAB_URL=https://vocabs.cbs.nl
 ELSST_VOCAB_URL=https://thesauri.cessda.eu
+ELSST_VOCABULARY=elsst-6

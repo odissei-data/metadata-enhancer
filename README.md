@@ -76,7 +76,7 @@ The Metadata Enhancer Service currently supports the following enhancers:
 ## API Endpoints
 
 - **POST /enrich/elsst/{language}**: Enrich metadata terms
-  using [ELSST vocabulary](https://thesauri.cessda.eu/elsst-4/en/).
+  using [ELSST version 6](https://thesauri.cessda.eu/elsst-6/en/).
 - **POST /enrich/cbs-concepts**: Enrich metadata terms
   using [CBS concepts](https://vocabs.cbs.nl/begrippen/nl).
 - **POST /enrich/cbs-taxonomy**: Enrich metadata terms using

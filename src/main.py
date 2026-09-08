@@ -18,6 +18,7 @@ ELSST_FUSEKI_URL = os.environ['ELSST_FUSEKI_URL']
 VARIABLE_FUSEKI_URL = os.environ['VARIABLE_FUSEKI_URL']
 CBS_VOCAB_URL = os.environ['CBS_VOCAB_URL']
 ELSST_VOCAB_URL = os.environ['ELSST_VOCAB_URL']
+ELSST_VOCABULARY = os.environ.get('ELSST_VOCABULARY', 'elsst-6')
 
 frequency_table = utils.load_tsv_from_github_raw(GITHUB_RAW_URL)
 if frequency_table is None:
@@ -34,12 +35,12 @@ if CBS_taxonomy_table is None:
 CBS_vocab_table = create_table_terms(CBS_VOCAB_URL, CBS_BEGRIPPEN_QUERY)
 if CBS_vocab_table is None:
     raise RuntimeError("Failed to load CBS vocab table.")
-ELSST_table = create_table_concepts_skosmos(ELSST_VOCAB_URL, "elsst-5",
+ELSST_table = create_table_concepts_skosmos(ELSST_VOCAB_URL, ELSST_VOCABULARY,
                                                     Lang.nl)
 if ELSST_table is None:
     raise RuntimeError("Failed to load ELSST table.")
 
-ELSST_english_table = create_table_concepts_skosmos(ELSST_VOCAB_URL, "elsst-5",
+ELSST_english_table = create_table_concepts_skosmos(ELSST_VOCAB_URL, ELSST_VOCABULARY,
                                                     Lang.en)
 if ELSST_english_table is None:
     raise RuntimeError("Failed to load ELSST English table.")
