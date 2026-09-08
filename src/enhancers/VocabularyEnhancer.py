@@ -1,5 +1,3 @@
-import jmespath
-
 from utils import _try_for_key
 from .MetadataEnhancer import MetadataEnhancer
 
@@ -55,9 +53,12 @@ class VocabularyEnhancer(MetadataEnhancer):
         # match
         for term_dict in matchable_terms:
             term = _try_for_key(term_dict, f'{field}.value')
-            if not term or term in self.added_terms_set:
-                break
+            if not term:
+                continue
             label = term.upper()
+            if label in self.added_terms_set:
+                continue
+            self.added_terms_set.add(label)
             uri = self.query_enrichment_table(label)
             if uri:
                 terms.append(uri)
@@ -66,14 +67,24 @@ class VocabularyEnhancer(MetadataEnhancer):
 
     def add_enhancements_to_metadata(self, terms: list):
         """ Creates a single primitive multiple field with a list of terms """
-        if not terms:
+        existing = [field for field in self.enrichment_block
+                    if field.get('typeName') == self.type_name]
+        values = list(dict.fromkeys(
+            [value for field in existing for value in field['value']] + terms
+        ))
+        if not values:
             return
-
-        primitive_field = {
-            "typeName": self.type_name,
-            "multiple": True,
-            "typeClass": "primitive",
-            "value": terms
-        }
-
-        self.enrichment_block.append(primitive_field)
+        if existing:
+            existing[0]['value'] = values
+            # Merge duplicate fields from earlier language/keyword passes.
+            self.enrichment_block[:] = [
+                field for field in self.enrichment_block
+                if field.get('typeName') != self.type_name or field is existing[0]
+            ]
+        else:
+            self.enrichment_block.append({
+                "typeName": self.type_name,
+                "multiple": True,
+                "typeClass": "primitive",
+                "value": values
+            })

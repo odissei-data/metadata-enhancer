@@ -1,6 +1,7 @@
 import os
 import terms
 import utils
+from elsst import normalize_existing_uris
 from starlette import status
 from fastapi import FastAPI, HTTPException, Path
 from enhancers.FrequencyEnhancer import FrequencyEnhancer
@@ -35,14 +36,14 @@ if CBS_taxonomy_table is None:
 CBS_vocab_table = create_table_terms(CBS_VOCAB_URL, CBS_BEGRIPPEN_QUERY)
 if CBS_vocab_table is None:
     raise RuntimeError("Failed to load CBS vocab table.")
-ELSST_table = create_table_concepts_skosmos(ELSST_VOCAB_URL, ELSST_VOCABULARY,
-                                                    Lang.nl)
-if ELSST_table is None:
+ELSST_table = create_table_concepts_skosmos(
+    ELSST_VOCAB_URL, ELSST_VOCABULARY, Lang.nl, versionless=True)
+if not ELSST_table:
     raise RuntimeError("Failed to load ELSST table.")
 
-ELSST_english_table = create_table_concepts_skosmos(ELSST_VOCAB_URL, ELSST_VOCABULARY,
-                                                    Lang.en)
-if ELSST_english_table is None:
+ELSST_english_table = create_table_concepts_skosmos(
+    ELSST_VOCAB_URL, ELSST_VOCABULARY, Lang.en, versionless=True)
+if not ELSST_english_table:
     raise RuntimeError("Failed to load ELSST English table.")
 
 @app.get("/version", tags=["Version"])
@@ -68,6 +69,7 @@ async def enrich_with_ELSST(
             detail="Invalid language specified, choose between 'en' and 'nl'.",
         )
 
+    normalize_existing_uris(enhancer_input.metadata)
     ELSST_enhancer = VocabularyEnhancer(
         enhancer_input.metadata,
         elsst_table,
