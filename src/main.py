@@ -46,6 +46,11 @@ ELSST_english_table = create_table_concepts_skosmos(
 if not ELSST_english_table:
     raise RuntimeError("Failed to load ELSST English table.")
 
+ELSST_multilingual_table = create_table_concepts_skosmos(
+    ELSST_VOCAB_URL, ELSST_VOCABULARY, Lang.all, versionless=True)
+if not ELSST_multilingual_table:
+    raise RuntimeError("Failed to load multilingual ELSST table.")
+
 @app.get("/version", tags=["Version"])
 async def info():
     result = get_version()
@@ -63,10 +68,12 @@ async def enrich_with_ELSST(
         elsst_table = ELSST_english_table
     elif language == 'nl':
         elsst_table = ELSST_table
+    elif language == 'all':
+        elsst_table = ELSST_multilingual_table
     else:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Invalid language specified, choose between 'en' and 'nl'.",
+            detail="Invalid language specified, choose 'en', 'nl' or 'all'.",
         )
 
     normalize_existing_uris(enhancer_input.metadata)

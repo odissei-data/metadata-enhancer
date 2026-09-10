@@ -10,8 +10,11 @@ def create_table_concepts_skosmos(skosmos_endpoint, vocabulary, language,
     """Load preferred labels, optionally resolving dct:isVersionOf URIs."""
     language = getattr(language, 'value', language).lower()
     api_endpoint = f"{skosmos_endpoint.rstrip('/')}/rest/v1/{vocabulary}/data"
+    params = {'format': 'text/turtle'}
+    if language != 'all':
+        params['lang'] = language
     response = requests.get(api_endpoint,
-                            params={'format': 'text/turtle', 'lang': language},
+                            params=params,
                             timeout=60)
     response.raise_for_status()
     graph = Graph().parse(data=response.text, format='turtle')
@@ -30,7 +33,7 @@ def create_table_from_graph(graph, language, *, versionless=False) -> dict:
     for concept in sorted(set(graph.subjects(RDF.type, SKOS.Concept))):
         labels = [label for label in graph.objects(concept, SKOS.prefLabel)
                   if getattr(label, 'language', None)
-                  and label.language.lower() == language]
+                  and (language == 'all' or label.language.lower() == language)]
         if not labels:
             continue
         targets = list(graph.objects(concept, DCTERMS.isVersionOf))
@@ -43,7 +46,14 @@ def create_table_from_graph(graph, language, *, versionless=False) -> dict:
         else:
             raise ValueError(f"Expected one dct:isVersionOf URI for {concept}")
         for label in labels:
-            table[str(label).upper()] = str(uri)
+            key = str(label).upper()
+            if language == 'all' and key in table and table[key] != str(uri):
+                # Do not guess when translations refer to different concepts.
+                table[key] = None
+            else:
+                table[key] = str(uri)
+    if language == 'all':
+        table = {label: uri for label, uri in table.items() if uri is not None}
     if versionless and not table:
         raise ValueError(f"No concepts found for language {language}")
     return table

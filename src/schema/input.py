@@ -20,6 +20,7 @@ class VocabInput(BaseModel):
 class Lang(str, Enum):
     en = "en"
     nl = "nl"
+    all = "all"
 
 
 class LangInput(BaseModel):
