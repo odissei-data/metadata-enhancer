@@ -35,7 +35,8 @@ def load_tsv_from_github_raw(url):
     :param url: The GitHub raw url.
     :return: a dict with the dsc title as key and frequency of use as value.
     """
-    response = requests.get(url)
+    response = requests.get(url, timeout=60)
+    response.raise_for_status()
     lines = response.text.strip().split('\n')
     reader = csv.reader(lines, delimiter='\t')
     next(reader)  # Skip the header row
