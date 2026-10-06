@@ -2,6 +2,7 @@ import importlib
 import sys
 
 import pytest
+from fastapi.testclient import TestClient
 
 URLS = ["GITHUB_RAW_URL", "ELSST_FUSEKI_URL", "VARIABLE_FUSEKI_URL",
         "CBS_VOCAB_URL", "ELSST_VOCAB_URL"]
@@ -22,3 +23,8 @@ def test_start_fails_on_an_empty_table(monkeypatch):
     with pytest.raises(RuntimeError):
         load_main(monkeypatch, {})
 
+
+def test_health(monkeypatch):
+    main = load_main(monkeypatch, {"a": "1"})
+    response = TestClient(main.app).get("/health").json()
+    assert response == {"status": "ok", "version": main.get_version()}

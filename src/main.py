@@ -57,6 +57,11 @@ async def info():
     return {"version": result}
 
 
+# Liveness only: the start fails unless every table loaded.
+@app.get("/health", tags=["Health"])
+async def health():
+    return {"status": "ok", "version": get_version()}
+
 
 @app.post('/enrich/elsst/{language}', tags=['Vocabulary enrichment'])
 async def enrich_with_ELSST(
