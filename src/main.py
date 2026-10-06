@@ -51,12 +51,6 @@ ELSST_multilingual_table = create_table_concepts_skosmos(
 if not ELSST_multilingual_table:
     raise RuntimeError("Failed to load multilingual ELSST table.")
 
-@app.get("/version", tags=["Version"])
-async def info():
-    result = get_version()
-    return {"version": result}
-
-
 # Liveness only: the start fails unless every table loaded.
 @app.get("/health", tags=["Health"])
 async def health():
