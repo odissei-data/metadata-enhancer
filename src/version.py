@@ -1,16 +1,6 @@
 import os
 
-import tomli
-
 
 def get_version():
-    if os.getenv('APP_VERSION'):
-        return os.environ['APP_VERSION']
-    with open('stub.toml', 'rb') as file:
-        package_details = tomli.load(file)
-    return package_details['tool']['poetry']['version']
-
-
-if __name__ == '__main__':
-    result = get_version()
-    print(result)
+    """The release tag baked into the image at build time (APP_VERSION)."""
+    return os.getenv('APP_VERSION') or 'v0.0.0-dev'

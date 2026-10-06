@@ -11,7 +11,6 @@ RUN poetry install --no-root
 
 WORKDIR src
 COPY src/ .
-COPY pyproject.toml ./stub.toml
 
 EXPOSE 7070
 RUN pip install uvicorn
