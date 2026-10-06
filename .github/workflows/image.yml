@@ -52,6 +52,7 @@ jobs:
           {
             echo "Image: \`$IMAGE:$TAG@$DIGEST\`"
             echo
-            git log --no-merges --format='- %s' "${prev:+$prev..}$TAG"
+            git log --no-merges --format='%x01- %s (%h)%n%b' "${prev:+$prev..}$TAG" |
+              awk '/^\001/ {print substr($0, 2); next} /^BREAKING[ -]CHANGE: / {print "  " $0}'
           } > notes.md
           gh release create "$TAG" --title "$TAG" --notes-file notes.md --verify-tag
