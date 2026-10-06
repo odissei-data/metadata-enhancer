@@ -27,4 +27,5 @@ def test_start_fails_on_an_empty_table(monkeypatch):
 def test_health(monkeypatch):
     main = load_main(monkeypatch, {"a": "1"})
     response = TestClient(main.app).get("/health").json()
-    assert response == {"status": "ok", "version": main.get_version()}
+    assert response == {"status": "ok", "version": main.get_version(),
+                        "image": main.get_image()}

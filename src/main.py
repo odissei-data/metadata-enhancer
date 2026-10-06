@@ -11,7 +11,7 @@ from api.queries import CBS_BEGRIPPEN_QUERY, CBS_TAXONOMIE_QUERY, CBS_VOCAB_QUER
 from api.skosmos import create_table_concepts_skosmos
 from api.fuseki import create_table_terms
 from schema.input import EnhancerInput, VocabInput, Lang
-from version import get_version
+from version import get_image, get_version
 
 app = FastAPI()
 GITHUB_RAW_URL = os.environ['GITHUB_RAW_URL']
@@ -54,7 +54,7 @@ if not ELSST_multilingual_table:
 # Liveness only: the start fails unless every table loaded.
 @app.get("/health", tags=["Health"])
 async def health():
-    return {"status": "ok", "version": get_version()}
+    return {"status": "ok", "version": get_version(), "image": get_image()}
 
 
 @app.post('/enrich/elsst/{language}', tags=['Vocabulary enrichment'])
