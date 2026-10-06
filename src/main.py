@@ -22,19 +22,19 @@ ELSST_VOCAB_URL = os.environ['ELSST_VOCAB_URL']
 ELSST_VOCABULARY = os.environ.get('ELSST_VOCABULARY', 'elsst-6')
 
 frequency_table = utils.load_tsv_from_github_raw(GITHUB_RAW_URL)
-if frequency_table is None:
+if not frequency_table:
     raise RuntimeError("Failed to load frequency table.")
 
 CBS_table = create_table_terms(VARIABLE_FUSEKI_URL, CBS_VOCAB_QUERY)
-if CBS_table is None:
+if not CBS_table:
     raise RuntimeError("Failed to load CBS table.")
 
 CBS_taxonomy_table = create_table_terms(CBS_VOCAB_URL, CBS_TAXONOMIE_QUERY)
-if CBS_taxonomy_table is None:
+if not CBS_taxonomy_table:
     raise RuntimeError("Failed to load CBS taxonomy table.")
 
 CBS_vocab_table = create_table_terms(CBS_VOCAB_URL, CBS_BEGRIPPEN_QUERY)
-if CBS_vocab_table is None:
+if not CBS_vocab_table:
     raise RuntimeError("Failed to load CBS vocab table.")
 ELSST_table = create_table_concepts_skosmos(
     ELSST_VOCAB_URL, ELSST_VOCABULARY, Lang.nl, versionless=True)
@@ -55,6 +55,7 @@ if not ELSST_multilingual_table:
 async def info():
     result = get_version()
     return {"version": result}
+
 
 
 @app.post('/enrich/elsst/{language}', tags=['Vocabulary enrichment'])
